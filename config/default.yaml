@@ -1,0 +1,274 @@
+universe:
+  # Candidate pairs for cointegration-based StatArb
+  pairs:
+    - ["EURUSD", "GBPUSD"]
+    - ["EURUSD", "AUDUSD"]
+    - ["GBPUSD", "AUDUSD"]
+    - ["USDCAD", "AUDUSD"]
+  # Explicit trade universe for the pairs engine. Defaults to `pairs` when omitted.
+  pair_trade_universe:
+    - ["EURUSD", "GBPUSD"]
+    - ["EURUSD", "AUDUSD"]
+    - ["GBPUSD", "AUDUSD"]
+    - ["USDCAD", "AUDUSD"]
+  # Wider browseable FX universe used for observability and pair diagnostics.
+  pair_observe_universe:
+    - "EURUSD"
+    - "GBPUSD"
+    - "USDJPY"
+    - "AUDUSD"
+    - "USDCAD"
+  # Instruments fed to the trend engine
+  trend_symbols:
+    - "EURUSD"
+    - "GBPUSD"
+    - "USDJPY"
+    - "AUDUSD"
+    - "USDCAD"
+
+pairs_engine:
+  cointegration_pvalue_threshold: 0.05   # Engle-Granger p-value cutoff
+  spread_window: 60                       # bars for rolling spread mean/std
+  entry_zscore: 2.0                       # open trade when |z| > entry_zscore
+  exit_zscore: 1.0                        # close trade when |z| < exit_zscore
+  max_position_pct: 0.10                  # max fraction of portfolio per pair leg
+
+trend_engine:
+  feature_lookback: 20                    # bars for feature computation
+  signal_threshold: 0.70                  # min P(up) or P(down) to trade
+  decision_threshold: 0.70                # explicit decision threshold for model probabilities
+  sma_fast: 50                            # fast SMA for crossover fallback
+  sma_slow: 200                           # slow SMA for crossover fallback
+  model_path: "config/trend_model.pkl"    # serialized LogisticRegression weights
+  model_root: "models/trend"              # versioned trend model artifacts root
+  model_version: "latest"                 # explicit model version or "latest"
+  label_horizon_bars: 8                   # forward bars used for trend label generation
+  label_threshold_bps: 6.0                # binary label threshold in bps
+  min_train_rows: 1200                    # minimum rows for standalone trend training
+  class_weight: "balanced"                # LogisticRegression class weighting
+  train_window_days: 270                  # walk-forward train window for trend trainer
+  test_window_days: 60                    # walk-forward test window for trend trainer
+  step_days: 30                           # walk-forward step for trend trainer
+
+regime:
+  n_states: 3                             # TREND, CHOP, RISK_OFF
+  obs_window: 30                          # bars for HMM observation features
+  vol_window: 20                          # bars for realized volatility
+  model_path: "config/hmm_model.pkl"      # serialized GaussianHMM
+  # State label mapping (index → name) — set after offline training
+  state_labels:
+    0: "TREND"
+    1: "CHOP"
+    2: "RISK_OFF"
+
+risk:
+  max_leverage: 3.0                       # portfolio-level leverage cap
+  stop_loss_pct: 0.02                     # per-trade stop at 2% adverse move
+  drawdown_kill_pct: 0.05                 # global kill-switch at 5% drawdown
+  vol_target_annual: 0.15                 # annualized volatility target (Kelly)
+  risk_off_size_multiplier: 0.25          # reduce size to 25% in RISK_OFF regime
+
+data:
+  source: "lean_history"                  # openbb | lean_history | oanda(stub)
+  bar_frequency: "15m"                    # canonical execution cadence
+  history_years: 10                       # years of history for training
+  openbb_provider: "fmp"                  # OpenBB provider tag (fmp, polygon, etc.)
+
+walkforward:
+  train_window_days: 365
+  test_window_days: 90
+  step_days: 30
+  max_splits: null
+  output_root: "artifacts/walkforward"
+  backend: "local"                        # local | lean | both
+  data_profile: "local_smoke"             # local_smoke | openbb
+  start_date: "2018-01-01"
+  end_date: "2024-12-31"
+  auto_report: true
+
+execution_costs:
+  commission_bps: 1.0
+  slippage_bps: 1.0
+
+robustness:
+  cost_scenarios:
+    - name: "base"
+      commission_mult: 1.0
+      slippage_mult: 1.0
+    - name: "plus_50"
+      commission_mult: 1.5
+      slippage_mult: 1.5
+    - name: "plus_100"
+      commission_mult: 2.0
+      slippage_mult: 2.0
+    - name: "worst_case"
+      commission_mult: 2.0
+      slippage_mult: 3.0
+  param_sweep_samples: 8
+  pairs_zscore_jitter_pct: 0.15
+  cointegration_jitter_pct: 0.15
+  trend_threshold_jitter_abs: 0.05
+  risk_cap_jitter_pct: 0.10
+  random_seed: 42
+
+proof_gates:
+  min_trend_pnl_in_trend_share: 0.60
+  min_pairs_pnl_in_chop_share: 0.60
+  max_risk_off_pnl_share_abs: 0.10
+  max_pair_profit_concentration: 0.50
+  max_worst_split_drawdown: 0.25
+  min_positive_param_sweep_share: 0.50
+  min_non_negative_sharpe_param_sweep_share: 0.50
+
+pairs_policy:
+  scan_enabled: true
+  scan_frequency_bars: 480
+  min_train_bars: 1000
+  p_enter: 0.08
+  p_exit: 0.15
+  p_break: 0.25
+  p_recover: 0.10
+  break_scans_required: 2
+  spread_std_spike_k: 2.5
+  beta_jump_abs: 0.30
+  max_holding_bars: 288
+  cooldown_scans: 2
+
+regime_qa:
+  enabled: true
+  max_churn_per_1000_bars: 120.0
+  max_posterior_sum_error: 1.0e-6
+  min_state_occupancy_share: 0.02
+
+regime_compare:
+  enabled: false
+  policies: ["hmm", "heuristic", "none"]
+  heuristic_vol_z_risk_off: 1.5
+  heuristic_mom_z_trend: 0.5
+  heuristic_vol_z_trend_max: 1.0
+
+ops:
+  output_root: "outputs"
+  legacy_output_root: "artifacts/ops"
+  mode: "paper"
+  strict_append_audit: true
+  require_run_id_columns: true
+
+health_monitor:
+  state_machine_thresholds:
+    data_stale_seconds: 300
+    degraded_rejects: 3
+    broker_down_rejects: 8
+
+reconciliation:
+  enabled: true
+  interval_seconds: 60
+  qty_tolerance: 1.0e-8
+  auto_flatten_on_persistent_mismatch: false
+  persistent_mismatch_cycles: 3
+
+circuit_breakers:
+  daily_loss_limit: 0.03
+  weekly_loss_limit: 0.06
+  max_consecutive_losses: 5
+  vol_spike_threshold: 2.5
+  reject_spike_threshold: 5
+  symbol_cooldown_minutes: 60
+
+micro_live_ladder:
+  active_stage: "stage0_paper"
+  universe_policy: "always_full"
+  stage0_paper:
+    exposure_multiplier: 0.10
+    loss_limit_multiplier: 0.40
+  stage1_micro:
+    exposure_multiplier: 0.25
+    loss_limit_multiplier: 0.50
+  stage2_small:
+    exposure_multiplier: 0.60
+    loss_limit_multiplier: 0.75
+  stage3_scale:
+    exposure_multiplier: 1.00
+    loss_limit_multiplier: 1.00
+  # legacy aliases (supported for backward compatibility)
+  stage_1:
+    exposure_multiplier: 0.25
+    loss_limit_multiplier: 0.50
+  stage_2:
+    exposure_multiplier: 0.60
+    loss_limit_multiplier: 0.75
+  stage_3:
+    exposure_multiplier: 1.00
+    loss_limit_multiplier: 1.00
+
+weekly_evaluation:
+  enabled: true
+  schedule_hint: "0 6 * * 1"
+  profile: "local_smoke"
+  max_splits: 1
+  run_robustness: false
+
+model_registry:
+  root: "artifacts/model_registry"
+  trend_refresh_days: 7
+  hmm_refresh_days: 7
+  pairs_refresh_days: 1
+
+alerts:
+  enabled: true
+  output_path: "alerts.jsonl"
+  min_severity: "warning"
+
+live_execution:
+  rail: "qc_paper"                      # qc_paper | tastytrade_paper | tastytrade_live
+  broker: "quantconnect"                # quantconnect | tastytrade
+  enable_broker_native_orders: false     # gate for broker-native order routing (Phase 3+)
+  enable_broker_market_data: false       # gate for broker-native market data consumption
+
+tastytrade:
+  api_base_url: "https://api.tastytrade.com"
+  oauth_token_url: "https://api.tastytrade.com/oauth2/token"
+  accounts_url: "https://api.tastytrade.com/customers/me/accounts"
+  balances_url_template: "https://api.tastytrade.com/accounts/{account_number}/balances"
+  client_id_env: "TASTYTRADE_CLIENT_ID"
+  client_secret_env: "TASTYTRADE_CLIENT_SECRET"
+  refresh_token_env: "TASTYTRADE_REFRESH_TOKEN"
+  account_number_env: "TASTYTRADE_ACCOUNT_NUMBER"
+  validate_api_on_precheck: true
+  require_account_number: false
+  require_symbol_map: true
+  symbol_map:                           # spot FX symbols -> Tastytrade/CME proxy roots for paper routing
+    AUDUSD: "6A"
+    EURUSD: "6E"
+    GBPUSD: "6B"
+    USDJPY: "6J"
+    USDCAD: "6C"
+
+qc_runtime:
+  enabled: true
+  resolution: "15m"
+  state_store_namespace: "fxhe"
+  health_check_interval_seconds: 60
+  reconcile_interval_seconds: 60
+  order_reject_lookback: 20
+  cancel_on_close_only: false
+
+promotion:
+  paper_window_days: 14
+  max_rejects_in_window: 10
+  max_stale_events_in_window: 5
+  max_reconcile_failures_in_window: 3
+  require_attribution_gate: true
+  require_cost_gate: true
+  require_drawdown_gate: true
+
+live_precheck:
+  required_env_vars: ["QC_USER_ID", "QC_API_TOKEN"]
+  extra_required_env_vars: []
+  require_emergency_flatten: true
+  ladder_config_path: "config/ladder.yaml"
+
+friction_model:
+  commission_bps: 1.0
+  slippage_bps: 1.0
+  spread_bps_proxy: 0.5

@@ -1,0 +1,4 @@
+interface:
+  display_name: "FXHY Ops Broker"
+  short_description: "Own paper live and broker flows"
+  default_prompt: "Use $fxhy-ops-broker to implement or validate this paper, live, or broker workflow safely."

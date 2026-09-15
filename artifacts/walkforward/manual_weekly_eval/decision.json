@@ -1,0 +1,19 @@
+{
+  "run_dir": "artifacts\\walkforward\\manual_weekly_eval",
+  "final_go": false,
+  "go_no_go": {
+    "hybrid_beats_pairs_only": true,
+    "hybrid_beats_trend_only": true,
+    "worst_split_drawdown_survivable": true,
+    "costs_do_not_kill_edge": true,
+    "attribution_matches_theory": false,
+    "pair_profit_concentration_ok": true,
+    "param_sweep_positive_return_share_ok": false,
+    "param_sweep_sharpe_share_ok": false
+  },
+  "ladder": {
+    "action": "hold",
+    "current_stage": "stage_1",
+    "next_stage": "stage_1"
+  }
+}

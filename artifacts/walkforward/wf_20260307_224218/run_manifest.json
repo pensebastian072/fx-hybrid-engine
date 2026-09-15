@@ -1,0 +1,61 @@
+{
+  "wf_run_id": "wf_20260307_224218",
+  "created_at_utc": "2026-03-08T03:57:52.196204+00:00",
+  "config_path": "C:\\\\path\\\\to\\\\fx-hybrid-engine\\config\\default.yaml",
+  "git_commit": "b623ff3444ada59a9601819141c8ca0d32cafa70",
+  "config_hash": "38199d61c1f64e17a43c213dfa7ffdbd0ea033729616a733acc2933ca644a76c",
+  "schema_version": "1.0.0",
+  "seed": 42,
+  "precompute_enabled": true,
+  "mode_reuse_enabled": true,
+  "skip_robustness": true,
+  "regime_compare_enabled": false,
+  "data_profile": "local_smoke",
+  "symbols": [
+    "AUDUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDCAD",
+    "USDJPY"
+  ],
+  "pair_list": [
+    [
+      "EURUSD",
+      "GBPUSD"
+    ],
+    [
+      "EURUSD",
+      "AUDUSD"
+    ],
+    [
+      "GBPUSD",
+      "AUDUSD"
+    ],
+    [
+      "USDCAD",
+      "AUDUSD"
+    ]
+  ],
+  "trend_symbols": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCAD"
+  ],
+  "split_params": {
+    "train_window_days": 365,
+    "test_window_days": 90,
+    "step_days": 30,
+    "max_splits": 1,
+    "generated_splits": 1
+  },
+  "cost_params": {
+    "commission_bps": 1.0,
+    "slippage_bps": 1.0
+  },
+  "cache_fingerprint": "9730ecf88eabb9403e86ad126bb9943d93130ebcd81d1219d66d7cc0034c82b7",
+  "pipeline_version": "phase5.1",
+  "trend_model_requested": "latest",
+  "trend_feature_schema_hash": "a6b42530d54cedf9d854040403fd2d8c654ea9a0f9f7ef8769c0500fcfac31ed"
+}

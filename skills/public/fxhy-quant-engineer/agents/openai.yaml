@@ -1,0 +1,4 @@
+interface:
+  display_name: "FXHY Quant Engineer"
+  short_description: "Build backend algo and config work"
+  default_prompt: "Use $fxhy-quant-engineer to implement this fx-hybrid-engine backend change and keep contracts intact."

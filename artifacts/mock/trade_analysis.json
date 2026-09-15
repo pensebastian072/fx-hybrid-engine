@@ -1,0 +1,50 @@
+{
+  "n_trades": 39,
+  "n_features": 3,
+  "feature_importance": [
+    {"feature":"trend_p_down","mean_abs_shap":0.082},
+    {"feature":"confidence","mean_abs_shap":0.061},
+    {"feature":"trend_p_up","mean_abs_shap":0.048}
+  ],
+  "confidence_buckets": [
+    {"bucket":"Q1","win_rate":0.38,"n":8,"avg_confidence":0.52},
+    {"bucket":"Q2","win_rate":0.50,"n":8,"avg_confidence":0.61},
+    {"bucket":"Q3","win_rate":0.63,"n":8,"avg_confidence":0.70},
+    {"bucket":"Q4","win_rate":0.75,"n":8,"avg_confidence":0.78},
+    {"bucket":"Q5","win_rate":0.88,"n":7,"avg_confidence":0.86}
+  ],
+  "regime_accuracy": {
+    "TREND": {"win_rate":0.68,"n":28,"avg_pnl":0.0015},
+    "CHOP": {"win_rate":0.38,"n":8,"avg_pnl":-0.0003},
+    "RISK_OFF": {"win_rate":0.0,"n":0,"avg_pnl":0.0}
+  },
+  "model_score": {"accuracy":0.62,"auc":0.71},
+  "top_features": ["trend_p_down","confidence","trend_p_up"],
+  "entry_efficiency": 0.68,
+  "average_adverse_excursion": -0.00087,
+  "win_rate_by_signal_type": {
+    "trend_momentum": 0.71,
+    "pairs_mean_revert": 0.55
+  },
+  "exit_reason_distribution": {
+    "stop_loss": 0.31,
+    "take_profit": 0.41,
+    "signal_flip_or_flat": 0.28
+  },
+  "trade_attribution": {
+    "trend": 0.0013,
+    "pairs": 0.0004
+  },
+  "trade_analytics_rows": [
+    {"trade_id":"t001","symbol":"AUDUSD","engine":"trend","entry_efficiency":0.82,"adverse_excursion":-0.00041,"favorable_excursion":0.00198,"signal_type":"trend_momentum","exit_reason":"signal_flip_or_flat","trigger_tags":["trend","momentum"]},
+    {"trade_id":"t002","symbol":"GBPUSD","engine":"trend","entry_efficiency":0.75,"adverse_excursion":-0.00062,"favorable_excursion":0.00409,"signal_type":"trend_momentum","exit_reason":"signal_flip_or_flat","trigger_tags":["trend","momentum"]},
+    {"trade_id":"t003","symbol":"USDCAD","engine":"trend","entry_efficiency":0.91,"adverse_excursion":-0.00118,"favorable_excursion":0.01392,"signal_type":"trend_momentum","exit_reason":"signal_flip_or_flat","trigger_tags":["trend","breakout"]},
+    {"trade_id":"t004","symbol":"GBPUSD","engine":"trend","entry_efficiency":0.31,"adverse_excursion":-0.00318,"favorable_excursion":0.00082,"signal_type":"trend_momentum","exit_reason":"stop_loss","trigger_tags":["trend","loss"]},
+    {"trade_id":"t005","symbol":"EURUSD","engine":"pairs","entry_efficiency":0.74,"adverse_excursion":-0.00091,"favorable_excursion":0.00675,"signal_type":"pairs_mean_revert","exit_reason":"z_score_mean_reversion","trigger_tags":["pairs","statarb","mean_reversion"]},
+    {"trade_id":"t006","symbol":"EURUSD","engine":"trend","entry_efficiency":0.88,"adverse_excursion":-0.00034,"favorable_excursion":0.00487,"signal_type":"trend_momentum","exit_reason":"take_profit","trigger_tags":["trend","winner"]},
+    {"trade_id":"t007","symbol":"USDJPY","engine":"trend","entry_efficiency":0.79,"adverse_excursion":-0.00048,"favorable_excursion":0.00524,"signal_type":"trend_momentum","exit_reason":"take_profit","trigger_tags":["trend","winner"]},
+    {"trade_id":"t008","symbol":"AUDUSD","engine":"trend","entry_efficiency":0.28,"adverse_excursion":-0.00267,"favorable_excursion":0.00061,"signal_type":"trend_momentum","exit_reason":"stop_loss","trigger_tags":["trend","loss","risk_off"]},
+    {"trade_id":"t009","symbol":"EURUSD","engine":"pairs","entry_efficiency":0.69,"adverse_excursion":-0.00078,"favorable_excursion":0.00371,"signal_type":"pairs_mean_revert","exit_reason":"z_score_mean_reversion","trigger_tags":["pairs","statarb","mean_reversion"]},
+    {"trade_id":"t010","symbol":"EURUSD","engine":"trend","entry_efficiency":null,"adverse_excursion":null,"favorable_excursion":null,"signal_type":"trend_momentum","exit_reason":null,"trigger_tags":["trend","open"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "bar_frequency": "1d",
+  "config_path": "C:\\\\path\\\\to\\\\fx-hybrid-engine\\config\\default.yaml",
+  "created_at_utc": "2026-02-27T14:26:28.725070+00:00",
+  "git_commit": "unknown",
+  "mode": "paper",
+  "run_id": "manual_phase6",
+  "startup_time_utc": "2026-02-27T14:26:28.724062+00:00",
+  "symbols": [
+    "AUDUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDCAD",
+    "USDJPY"
+  ]
+}

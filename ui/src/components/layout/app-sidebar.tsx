@@ -1,0 +1,253 @@
+'use client';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from '@/components/ui/collapsible';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarRail
+} from '@/components/ui/sidebar';
+import { UserAvatarProfile } from '@/components/user-avatar-profile';
+import { navItems } from '@/config/nav-config';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { useUser } from '@clerk/nextjs';
+import { useFilteredNavItems } from '@/hooks/use-nav';
+import {
+  IconChevronRight,
+  IconChevronsDown,
+  IconLogout,
+  IconLogin,
+  IconUserCircle
+} from '@tabler/icons-react';
+import { SignOutButton } from '@clerk/nextjs';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import * as React from 'react';
+import { Icons } from '../icons';
+import { OrgSwitcher } from '../org-switcher';
+import { clerkAuthEnabled } from '@/lib/auth-config';
+
+function isPublicNavItem(item: (typeof navItems)[number]) {
+  return !item.access?.requireOrg && !item.access?.permission && !item.access?.role;
+}
+
+function buildPublicNavItems() {
+  return navItems
+    .filter(isPublicNavItem)
+    .map((item) => ({
+      ...item,
+      items: item.items?.filter((child) => !child.access?.requireOrg && !child.access?.permission && !child.access?.role) ?? []
+    }));
+}
+
+function SidebarBody({
+  filteredItems,
+  user,
+  onProfile,
+  onSignIn
+}: {
+  filteredItems: typeof navItems;
+  user: {
+    fullName?: string | null;
+    imageUrl?: string;
+    emailAddresses: Array<{ emailAddress: string }>;
+  } | null;
+  onProfile: () => void;
+  onSignIn: () => void;
+}) {
+  const pathname = usePathname();
+  const { isOpen } = useMediaQuery();
+
+  React.useEffect(() => {
+    // Side effects based on sidebar state changes
+  }, [isOpen]);
+
+  return (
+    <Sidebar collapsible='icon'>
+      <SidebarHeader>
+        <OrgSwitcher />
+      </SidebarHeader>
+      <SidebarContent className='overflow-x-hidden'>
+        <SidebarGroup>
+          <SidebarGroupLabel>Overview</SidebarGroupLabel>
+          <SidebarMenu>
+            {filteredItems.map((item) => {
+              const Icon = item.icon ? Icons[item.icon] : Icons.logo;
+              return item?.items && item?.items?.length > 0 ? (
+                <Collapsible
+                  key={item.title}
+                  asChild
+                  defaultOpen={item.isActive}
+                  className='group/collapsible'
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip={item.title}
+                        isActive={pathname === item.url}
+                      >
+                        {item.icon && <Icon />}
+                        <span>{item.title}</span>
+                        <IconChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.items?.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={pathname === subItem.url}
+                            >
+                              <Link href={subItem.url}>
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              ) : (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={item.title}
+                    isActive={pathname === item.url}
+                  >
+                    <Link href={item.url}>
+                      <Icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size='lg'
+                  className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                >
+                  {user && (
+                    <UserAvatarProfile
+                      className='h-8 w-8 rounded-lg'
+                      showInfo
+                      user={user}
+                    />
+                  )}
+                  <IconChevronsDown className='ml-auto size-4' />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
+                side='bottom'
+                align='end'
+                sideOffset={4}
+              >
+                {user && (
+                  <DropdownMenuLabel className='p-0 font-normal'>
+                    <div className='px-1 py-1.5'>
+                      <UserAvatarProfile
+                        className='h-8 w-8 rounded-lg'
+                        showInfo
+                        user={user}
+                      />
+                    </div>
+                  </DropdownMenuLabel>
+                )}
+                <DropdownMenuSeparator />
+
+                <DropdownMenuGroup>
+                  {user ? (
+                    <DropdownMenuItem onClick={onProfile}>
+                      <IconUserCircle className='mr-2 h-4 w-4' />
+                      Profile
+                    </DropdownMenuItem>
+                  ) : (
+                    <DropdownMenuItem onClick={onSignIn}>
+                      <IconLogin className='mr-2 h-4 w-4' />
+                      Sign In
+                    </DropdownMenuItem>
+                  )}
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                {user && (
+                  <DropdownMenuItem>
+                    <IconLogout className='mr-2 h-4 w-4' />
+                    <SignOutButton redirectUrl='/auth/sign-in' />
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
+  );
+}
+
+function ClerkAppSidebar() {
+  const { user } = useUser();
+  const router = useRouter();
+  const filteredItems = useFilteredNavItems(navItems);
+
+  return (
+    <SidebarBody
+      filteredItems={filteredItems}
+      user={user ?? null}
+      onProfile={() => router.push('/dashboard/profile')}
+      onSignIn={() => router.push('/auth/sign-in')}
+    />
+  );
+}
+
+function LocalAppSidebar() {
+  const router = useRouter();
+
+  return (
+    <SidebarBody
+      filteredItems={buildPublicNavItems()}
+      user={null}
+      onProfile={() => router.push('/dashboard/profile')}
+      onSignIn={() => router.push('/auth/sign-in')}
+    />
+  );
+}
+
+export default function AppSidebar() {
+  if (!clerkAuthEnabled) {
+    return <LocalAppSidebar />;
+  }
+
+  return <ClerkAppSidebar />;
+}

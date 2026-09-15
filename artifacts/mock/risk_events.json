@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "2026-03-04T00:02:45Z",
+    "event_type": "breaker_trigger",
+    "message": "Daily loss limit reached: -2.1% (threshold -2.0%). Close-only engaged.",
+    "symbols": [],
+    "action": "close_only",
+    "reason_code": "daily_loss_limit"
+  },
+  {
+    "timestamp": "2026-03-03T21:10:00Z",
+    "event_type": "risk_event",
+    "message": "Vol spike throttle activated: realized vol 24% annualized (threshold 20%). Size reduced 50%.",
+    "symbols": ["EURUSD", "GBPUSD"],
+    "action": "size_reduced_50pct",
+    "reason_code": "vol_spike_throttle"
+  },
+  {
+    "timestamp": "2026-03-03T18:45:00Z",
+    "event_type": "risk_event",
+    "message": "Reject spike: 8 signals rejected in last 15 min (threshold 5). Pausing signal generation 5 min.",
+    "symbols": [],
+    "action": "signal_pause_5min",
+    "reason_code": "reject_spike_throttle"
+  },
+  {
+    "timestamp": "2026-03-03T15:30:00Z",
+    "event_type": "stale_data",
+    "message": "Stale data: USDCAD missing 3 consecutive 15m bars. Positions flattened.",
+    "symbols": ["USDCAD"],
+    "action": "flatten",
+    "reason_code": "stale_data_monitor"
+  },
+  {
+    "timestamp": "2026-03-03T12:00:00Z",
+    "event_type": "risk_event",
+    "message": "Reconciliation mismatch: broker fill count (12) vs internal fill count (11). Audit triggered.",
+    "symbols": [],
+    "action": "audit",
+    "reason_code": "reconciliation_mismatch"
+  }
+]

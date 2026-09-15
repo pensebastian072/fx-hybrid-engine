@@ -1,0 +1,12 @@
+[
+  {"timestamp":"2024-01-02T00:00:00Z","regime_label":"RISK_OFF","TREND":0.02,"CHOP":0.05,"RISK_OFF":0.93},
+  {"timestamp":"2024-01-03T00:00:00Z","regime_label":"RISK_OFF","TREND":0.04,"CHOP":0.08,"RISK_OFF":0.88},
+  {"timestamp":"2024-01-08T00:00:00Z","regime_label":"CHOP","TREND":0.12,"CHOP":0.68,"RISK_OFF":0.20},
+  {"timestamp":"2024-01-09T00:00:00Z","regime_label":"CHOP","TREND":0.18,"CHOP":0.72,"RISK_OFF":0.10},
+  {"timestamp":"2024-01-15T00:00:00Z","regime_label":"TREND","TREND":0.61,"CHOP":0.32,"RISK_OFF":0.07},
+  {"timestamp":"2024-01-16T00:00:00Z","regime_label":"TREND","TREND":0.71,"CHOP":0.22,"RISK_OFF":0.07},
+  {"timestamp":"2024-01-17T00:00:00Z","regime_label":"TREND","TREND":0.68,"CHOP":0.25,"RISK_OFF":0.07},
+  {"timestamp":"2024-01-22T00:00:00Z","regime_label":"TREND","TREND":0.75,"CHOP":0.18,"RISK_OFF":0.07},
+  {"timestamp":"2024-01-23T00:00:00Z","regime_label":"CHOP","TREND":0.38,"CHOP":0.55,"RISK_OFF":0.07},
+  {"timestamp":"2024-01-24T00:00:00Z","regime_label":"CHOP","TREND":0.28,"CHOP":0.65,"RISK_OFF":0.07}
+]

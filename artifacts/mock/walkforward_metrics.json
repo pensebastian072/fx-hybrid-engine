@@ -1,0 +1,8 @@
+{
+  "splits_meta": [{"split_idx":0,"train_start":"2019-01-01","train_end":"2022-12-31","test_start":"2023-01-01","test_end":"2024-12-31"}],
+  "by_mode": {
+    "hybrid": [{"split_idx":0,"total_return":0.0214,"sharpe":1.031,"max_drawdown":0.023,"win_rate":0.172,"trades":39}],
+    "pairs_only": [{"split_idx":0,"total_return":0.0082,"sharpe":0.431,"max_drawdown":0.018,"win_rate":0.524,"trades":17}],
+    "trend_only": [{"split_idx":0,"total_return":-0.032,"sharpe":-1.073,"max_drawdown":0.054,"win_rate":0.266,"trades":22}]
+  }
+}

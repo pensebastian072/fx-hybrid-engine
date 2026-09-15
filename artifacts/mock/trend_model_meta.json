@@ -1,0 +1,20 @@
+{
+  "model_version": "v20260303_001",
+  "training_window_days": 270,
+  "feature_schema_hash": "a3f9c1b72e84d6a0f12cc3e5b8d94201",
+  "last_retrain_time": "2026-03-03T22:00:00Z",
+  "calibration_score": 0.87,
+  "feature_columns": [
+    "sma_ratio_50_200",
+    "rsi_14",
+    "momentum_20",
+    "rolling_vol_20",
+    "ema_ratio_12_26",
+    "atr_14",
+    "spread_z",
+    "close_over_bb_upper"
+  ],
+  "label_mode": "binary",
+  "label_horizon_bars": 8,
+  "label_threshold_bps": 6.0
+}

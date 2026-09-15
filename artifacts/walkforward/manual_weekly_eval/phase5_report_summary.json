@@ -1,0 +1,17 @@
+{
+  "run_dir": "artifacts\\walkforward\\manual_weekly_eval",
+  "final_go": false,
+  "go_no_go": {
+    "hybrid_beats_pairs_only": true,
+    "hybrid_beats_trend_only": true,
+    "worst_split_drawdown_survivable": true,
+    "costs_do_not_kill_edge": true,
+    "attribution_matches_theory": false,
+    "pair_profit_concentration_ok": true,
+    "param_sweep_positive_return_share_ok": false,
+    "param_sweep_sharpe_share_ok": false
+  },
+  "median_hybrid_total_return": 0.0076999677092228,
+  "median_hybrid_sharpe": 1.299462163749509,
+  "worst_split_max_drawdown": 0.0036850867620229
+}

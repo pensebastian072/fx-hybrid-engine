@@ -1,0 +1,157 @@
+mode: hybrid
+split_idx: 0
+runtime:
+  precompute_enabled: true
+  mode_reuse_enabled: true
+  cache_fingerprint: 19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2
+  pipeline_version: phase5.1
+config:
+  universe:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    trend_symbols:
+    - EURUSD
+    - GBPUSD
+    - USDJPY
+    - AUDUSD
+    - USDCAD
+  pairs:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    cointegration_pvalue_threshold: 0.05
+    spread_window: 60
+    entry_zscore: 2.0
+    exit_zscore: 1.0
+    max_position_pct: 0.1
+  trend:
+    feature_lookback: 20
+    signal_threshold: 0.7
+    sma_fast: 50
+    sma_slow: 200
+    model_path: config/trend_model.pkl
+  regime:
+    n_states: 3
+    obs_window: 30
+    vol_window: 20
+    model_path: config/hmm_model.pkl
+    state_labels:
+      0: TREND
+      1: CHOP
+      2: RISK_OFF
+  risk:
+    max_leverage: 3.0
+    stop_loss_pct: 0.02
+    drawdown_kill_pct: 0.05
+    vol_target_annual: 0.15
+    risk_off_size_multiplier: 0.25
+  data:
+    bar_frequency: 1d
+    history_years: 10
+    openbb_provider: fmp
+  walkforward:
+    train_window_days: 365
+    test_window_days: 90
+    step_days: 30
+    max_splits: null
+    output_root: artifacts/walkforward
+    backend: local
+    data_profile: local_smoke
+    start_date: '2018-01-01'
+    end_date: '2024-12-31'
+    auto_report: true
+  execution_costs:
+    commission_bps: 1.0
+    slippage_bps: 1.0
+  robustness:
+    cost_scenarios:
+    - name: base
+      commission_mult: 1.0
+      slippage_mult: 1.0
+    - name: plus_50
+      commission_mult: 1.5
+      slippage_mult: 1.5
+    - name: plus_100
+      commission_mult: 2.0
+      slippage_mult: 2.0
+    - name: worst_case
+      commission_mult: 2.0
+      slippage_mult: 3.0
+    param_sweep_samples: 8
+    pairs_zscore_jitter_pct: 0.15
+    cointegration_jitter_pct: 0.15
+    trend_threshold_jitter_abs: 0.05
+    risk_cap_jitter_pct: 0.1
+    random_seed: 42
+  proof_gates:
+    min_trend_pnl_in_trend_share: 0.6
+    min_pairs_pnl_in_chop_share: 0.6
+    max_risk_off_pnl_share_abs: 0.1
+    max_pair_profit_concentration: 0.5
+    max_worst_split_drawdown: 0.25
+    min_positive_param_sweep_share: 0.5
+    min_non_negative_sharpe_param_sweep_share: 0.5
+  ops:
+    output_root: outputs
+    legacy_output_root: artifacts/ops
+    mode: paper
+    strict_append_audit: true
+    require_run_id_columns: true
+  health_monitor:
+    state_machine_thresholds:
+      data_stale_seconds: 300
+      degraded_rejects: 3
+      broker_down_rejects: 8
+  reconciliation:
+    enabled: true
+    interval_seconds: 60
+    qty_tolerance: 1.0e-08
+    auto_flatten_on_persistent_mismatch: false
+    persistent_mismatch_cycles: 3
+  circuit_breakers:
+    daily_loss_limit: 0.03
+    weekly_loss_limit: 0.06
+    max_consecutive_losses: 5
+    vol_spike_threshold: 2.5
+    reject_spike_threshold: 5
+    symbol_cooldown_minutes: 60
+  micro_live_ladder:
+    active_stage: stage_1
+    universe_policy: always_full
+    stage_1:
+      exposure_multiplier: 0.25
+      loss_limit_multiplier: 0.5
+    stage_2:
+      exposure_multiplier: 0.6
+      loss_limit_multiplier: 0.75
+    stage_3:
+      exposure_multiplier: 1.0
+      loss_limit_multiplier: 1.0
+  weekly_evaluation:
+    enabled: true
+    schedule_hint: 0 6 * * 1
+    profile: local_smoke
+    max_splits: 1
+    run_robustness: false
+  model_registry:
+    root: artifacts/model_registry
+    trend_refresh_days: 7
+    hmm_refresh_days: 7
+    pairs_refresh_days: 1
+  alerts:
+    enabled: true
+    output_path: alerts.jsonl
+    min_severity: warning

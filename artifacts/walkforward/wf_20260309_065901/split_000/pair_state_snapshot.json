@@ -1,0 +1,38 @@
+{
+  "EURUSD-GBPUSD": {
+    "status": "WATCH",
+    "disabled_until_scan": null,
+    "high_pvalue_streak": 0,
+    "last_pvalue": null,
+    "last_beta": null,
+    "median_spread_std": null,
+    "last_reason": "missing_scan_metrics"
+  },
+  "EURUSD-AUDUSD": {
+    "status": "WATCH",
+    "disabled_until_scan": null,
+    "high_pvalue_streak": 0,
+    "last_pvalue": null,
+    "last_beta": null,
+    "median_spread_std": null,
+    "last_reason": "missing_scan_metrics"
+  },
+  "GBPUSD-AUDUSD": {
+    "status": "WATCH",
+    "disabled_until_scan": null,
+    "high_pvalue_streak": 0,
+    "last_pvalue": null,
+    "last_beta": null,
+    "median_spread_std": null,
+    "last_reason": "missing_scan_metrics"
+  },
+  "USDCAD-AUDUSD": {
+    "status": "WATCH",
+    "disabled_until_scan": null,
+    "high_pvalue_streak": 0,
+    "last_pvalue": null,
+    "last_beta": null,
+    "median_spread_std": null,
+    "last_reason": "missing_scan_metrics"
+  }
+}

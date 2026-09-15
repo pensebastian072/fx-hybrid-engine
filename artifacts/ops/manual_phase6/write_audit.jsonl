@@ -1,0 +1,10 @@
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "bars", "timestamp": "2026-02-27T14:26:28.766078+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "features", "timestamp": "2026-02-27T14:26:28.780633+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "signals", "timestamp": "2026-02-27T14:26:28.795635+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "targets", "timestamp": "2026-02-27T14:26:28.809643+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "orders", "timestamp": "2026-02-27T14:26:28.823639+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "fills", "timestamp": "2026-02-27T14:26:28.838643+00:00"}
+{"append_id": 1, "post_rows": 0, "pre_rows": 0, "rows_added": 0, "stream": "equity_curve", "timestamp": "2026-02-27T14:26:28.851641+00:00"}
+{"append_id": 1, "post_rows": 1, "pre_rows": 0, "rows_added": 1, "stream": "risk_events", "timestamp": "2026-02-27T14:26:28.866871+00:00"}
+{"append_id": 1, "post_rows": 1, "pre_rows": 0, "rows_added": 1, "stream": "broker_events", "timestamp": "2026-02-27T14:26:28.885423+00:00"}
+{"append_id": 2, "post_rows": 2, "pre_rows": 1, "rows_added": 1, "stream": "broker_events", "timestamp": "2026-02-27T14:26:28.906424+00:00"}

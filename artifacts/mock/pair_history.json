@@ -1,0 +1,109 @@
+{
+  "EURUSD-GBPUSD": {
+    "scan_history": [
+      {"date":"2026-01-05","pvalue":0.031,"beta":0.88,"spread_std":0.0019,"z_abs_p95":2.3,"state":"TRADABLE"},
+      {"date":"2026-01-12","pvalue":0.028,"beta":0.89,"spread_std":0.0018,"z_abs_p95":2.2,"state":"TRADABLE"},
+      {"date":"2026-01-19","pvalue":0.045,"beta":0.90,"spread_std":0.0020,"z_abs_p95":2.1,"state":"TRADABLE"},
+      {"date":"2026-01-26","pvalue":0.052,"beta":0.91,"spread_std":0.0021,"z_abs_p95":2.0,"state":"WATCH"},
+      {"date":"2026-02-02","pvalue":0.039,"beta":0.91,"spread_std":0.0019,"z_abs_p95":2.2,"state":"TRADABLE"},
+      {"date":"2026-02-09","pvalue":0.025,"beta":0.92,"spread_std":0.0018,"z_abs_p95":2.3,"state":"TRADABLE"},
+      {"date":"2026-02-16","pvalue":0.021,"beta":0.92,"spread_std":0.0017,"z_abs_p95":2.4,"state":"TRADABLE"},
+      {"date":"2026-02-23","pvalue":0.019,"beta":0.93,"spread_std":0.0018,"z_abs_p95":2.5,"state":"TRADABLE"},
+      {"date":"2026-03-02","pvalue":0.021,"beta":0.92,"spread_std":0.0018,"z_abs_p95":2.1,"state":"TRADABLE"}
+    ],
+    "zscore_series": [
+      {"date":"2026-01-05","zscore":0.8},{"date":"2026-01-06","zscore":1.2},{"date":"2026-01-07","zscore":1.8},
+      {"date":"2026-01-08","zscore":2.3},{"date":"2026-01-09","zscore":1.5},{"date":"2026-01-10","zscore":0.9},
+      {"date":"2026-01-13","zscore":0.4},{"date":"2026-01-14","zscore":-0.3},{"date":"2026-01-15","zscore":-1.1},
+      {"date":"2026-01-16","zscore":-1.8},{"date":"2026-01-17","zscore":-2.2},{"date":"2026-01-20","zscore":-1.4},
+      {"date":"2026-01-21","zscore":-0.7},{"date":"2026-01-22","zscore":0.1},{"date":"2026-01-23","zscore":0.6},
+      {"date":"2026-01-26","zscore":1.0},{"date":"2026-01-27","zscore":1.5},{"date":"2026-01-28","zscore":2.1},
+      {"date":"2026-01-29","zscore":1.7},{"date":"2026-01-30","zscore":1.1},{"date":"2026-02-02","zscore":0.5},
+      {"date":"2026-02-03","zscore":-0.2},{"date":"2026-02-04","zscore":-0.9},{"date":"2026-02-05","zscore":-1.6},
+      {"date":"2026-02-06","zscore":-2.1},{"date":"2026-02-09","zscore":-1.3},{"date":"2026-02-10","zscore":-0.6},
+      {"date":"2026-02-11","zscore":0.3},{"date":"2026-02-12","zscore":0.8},{"date":"2026-02-13","zscore":1.4},
+      {"date":"2026-02-16","zscore":1.9},{"date":"2026-02-17","zscore":2.4},{"date":"2026-02-18","zscore":1.8},
+      {"date":"2026-02-19","zscore":1.2},{"date":"2026-02-20","zscore":0.7},{"date":"2026-02-23","zscore":0.2},
+      {"date":"2026-02-24","zscore":-0.5},{"date":"2026-02-25","zscore":-1.0},{"date":"2026-02-26","zscore":-1.7},
+      {"date":"2026-02-27","zscore":-2.0},{"date":"2026-03-02","zscore":-1.1},{"date":"2026-03-03","zscore":-0.4},
+      {"date":"2026-03-04","zscore":0.3}
+    ],
+    "state_events": [
+      {"date":"2026-01-26","event":"TRADABLE→WATCH","reason":"pval_exit (0.052 > 0.15)"},
+      {"date":"2026-02-02","event":"WATCH→TRADABLE","reason":"pval_recover (0.039 < 0.10)"}
+    ]
+  },
+  "EURUSD-AUDUSD": {
+    "scan_history": [
+      {"date":"2026-01-05","pvalue":null,"beta":null,"spread_std":null,"z_abs_p95":null,"state":"WATCH"},
+      {"date":"2026-01-12","pvalue":null,"beta":null,"spread_std":null,"z_abs_p95":null,"state":"WATCH"},
+      {"date":"2026-01-19","pvalue":null,"beta":null,"spread_std":null,"z_abs_p95":null,"state":"WATCH"},
+      {"date":"2026-01-26","pvalue":null,"beta":null,"spread_std":null,"z_abs_p95":null,"state":"WATCH"},
+      {"date":"2026-02-02","pvalue":0.14,"beta":0.65,"spread_std":0.0028,"z_abs_p95":1.2,"state":"WATCH"},
+      {"date":"2026-02-09","pvalue":0.09,"beta":0.67,"spread_std":0.0026,"z_abs_p95":1.4,"state":"WATCH"},
+      {"date":"2026-02-16","pvalue":0.11,"beta":0.66,"spread_std":0.0027,"z_abs_p95":1.3,"state":"WATCH"},
+      {"date":"2026-02-23","pvalue":0.13,"beta":0.68,"spread_std":0.0029,"z_abs_p95":1.1,"state":"WATCH"},
+      {"date":"2026-03-02","pvalue":null,"beta":null,"spread_std":null,"z_abs_p95":null,"state":"WATCH"}
+    ],
+    "zscore_series": [
+      {"date":"2026-02-02","zscore":0.3},{"date":"2026-02-03","zscore":0.6},{"date":"2026-02-04","zscore":0.9},
+      {"date":"2026-02-05","zscore":1.1},{"date":"2026-02-06","zscore":0.8},{"date":"2026-02-09","zscore":0.5},
+      {"date":"2026-02-10","zscore":0.2},{"date":"2026-02-11","zscore":-0.1},{"date":"2026-02-12","zscore":-0.4},
+      {"date":"2026-02-13","zscore":-0.7},{"date":"2026-02-16","zscore":-0.9},{"date":"2026-02-17","zscore":-1.1},
+      {"date":"2026-02-18","zscore":-0.8},{"date":"2026-02-19","zscore":-0.5},{"date":"2026-02-20","zscore":-0.2}
+    ],
+    "state_events": [
+      {"date":"2026-01-05","event":"WATCH","reason":"insufficient_bars (< 1000)"}
+    ]
+  },
+  "GBPUSD-AUDUSD": {
+    "scan_history": [
+      {"date":"2026-01-05","pvalue":0.08,"beta":1.1,"spread_std":0.0038,"z_abs_p95":1.5,"state":"WATCH"},
+      {"date":"2026-01-12","pvalue":0.12,"beta":1.15,"spread_std":0.0040,"z_abs_p95":1.4,"state":"WATCH"},
+      {"date":"2026-01-19","pvalue":0.19,"beta":1.18,"spread_std":0.0041,"z_abs_p95":1.3,"state":"WATCH"},
+      {"date":"2026-01-26","pvalue":0.22,"beta":1.19,"spread_std":0.0043,"z_abs_p95":1.2,"state":"DISABLED"},
+      {"date":"2026-02-02","pvalue":0.21,"beta":1.20,"spread_std":0.0042,"z_abs_p95":1.3,"state":"DISABLED"},
+      {"date":"2026-02-09","pvalue":0.19,"beta":1.21,"spread_std":0.0041,"z_abs_p95":1.3,"state":"DISABLED"},
+      {"date":"2026-02-16","pvalue":0.18,"beta":1.21,"spread_std":0.0042,"z_abs_p95":1.3,"state":"DISABLED"},
+      {"date":"2026-02-23","pvalue":0.18,"beta":1.20,"spread_std":0.0042,"z_abs_p95":1.3,"state":"DISABLED"},
+      {"date":"2026-03-02","pvalue":0.18,"beta":1.20,"spread_std":0.0042,"z_abs_p95":1.3,"state":"DISABLED"}
+    ],
+    "zscore_series": [
+      {"date":"2026-01-05","zscore":0.6},{"date":"2026-01-06","zscore":0.9},{"date":"2026-01-07","zscore":1.2},
+      {"date":"2026-01-08","zscore":1.5},{"date":"2026-01-09","zscore":1.2},{"date":"2026-01-10","zscore":0.9},
+      {"date":"2026-01-13","zscore":0.7},{"date":"2026-01-14","zscore":0.4},{"date":"2026-01-15","zscore":0.1},
+      {"date":"2026-01-16","zscore":-0.2},{"date":"2026-01-17","zscore":-0.5},{"date":"2026-01-20","zscore":-0.3}
+    ],
+    "state_events": [
+      {"date":"2026-01-12","event":"TRADABLE→WATCH","reason":"pval rising (0.12 > p_exit 0.15)"},
+      {"date":"2026-01-26","event":"WATCH→DISABLED","reason":"pval_fail for 2 scans (0.22 > p_break 0.25)"}
+    ]
+  },
+  "USDCAD-AUDUSD": {
+    "scan_history": [
+      {"date":"2026-01-05","pvalue":0.06,"beta":1.4,"spread_std":0.0028,"z_abs_p95":1.7,"state":"TRADABLE"},
+      {"date":"2026-01-12","pvalue":0.07,"beta":1.5,"spread_std":0.0029,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-01-19","pvalue":0.06,"beta":1.6,"spread_std":0.0031,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-01-26","pvalue":0.07,"beta":1.7,"spread_std":0.0030,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-02-02","pvalue":0.07,"beta":1.8,"spread_std":0.0031,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-02-09","pvalue":0.07,"beta":1.85,"spread_std":0.0031,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-02-16","pvalue":0.07,"beta":1.9,"spread_std":0.0032,"z_abs_p95":1.7,"state":"WATCH"},
+      {"date":"2026-02-23","pvalue":0.07,"beta":1.85,"spread_std":0.0031,"z_abs_p95":1.8,"state":"WATCH"},
+      {"date":"2026-03-02","pvalue":0.07,"beta":1.85,"spread_std":0.0031,"z_abs_p95":1.8,"state":"WATCH"}
+    ],
+    "zscore_series": [
+      {"date":"2026-01-05","zscore":1.1},{"date":"2026-01-06","zscore":1.4},{"date":"2026-01-07","zscore":1.7},
+      {"date":"2026-01-08","zscore":1.9},{"date":"2026-01-09","zscore":1.6},{"date":"2026-01-10","zscore":1.3},
+      {"date":"2026-01-13","zscore":0.9},{"date":"2026-01-14","zscore":0.5},{"date":"2026-01-15","zscore":0.1},
+      {"date":"2026-01-16","zscore":-0.3},{"date":"2026-01-17","zscore":-0.7},{"date":"2026-01-20","zscore":-1.1},
+      {"date":"2026-01-21","zscore":-1.4},{"date":"2026-01-22","zscore":-1.7},{"date":"2026-01-23","zscore":-1.9},
+      {"date":"2026-01-26","zscore":-1.6},{"date":"2026-01-27","zscore":-1.2},{"date":"2026-01-28","zscore":-0.8},
+      {"date":"2026-01-29","zscore":-0.4},{"date":"2026-01-30","zscore":0.0},{"date":"2026-02-02","zscore":0.4},
+      {"date":"2026-02-03","zscore":0.8},{"date":"2026-02-04","zscore":1.2},{"date":"2026-02-05","zscore":1.6},
+      {"date":"2026-02-06","zscore":1.8},{"date":"2026-02-09","zscore":1.5},{"date":"2026-02-10","zscore":1.1}
+    ],
+    "state_events": [
+      {"date":"2026-01-12","event":"TRADABLE→WATCH","reason":"beta_drift (|1.5-1.4|=0.1 < threshold, monitoring)"}
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+pairs:
+  - [EURUSD, GBPUSD]
+  - [AUDUSD, NZDUSD]
+groups:
+  USD_quotes: [EURUSD, GBPUSD, AUDUSD, NZDUSD, USDCAD]
+avoid_pairs: []
+
+lookback_bars: 500
+scan_frequency: daily
+
+p_enter: 0.05
+p_exit: 0.15
+p_break: 0.25
+p_recover: 0.05
+
+break_scans_required: 3
+recover_scans_required: 2
+beta_jump_threshold: 0.25
+variance_break_mult: 2.5
+
+disable_cooldown_bars: 288
+time_stop_half_life_mult: 3.0
+
+entry_z: 2.0
+exit_z: 0.5

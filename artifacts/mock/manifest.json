@@ -1,0 +1,54 @@
+{
+  "run_id": "mock_20260304_000000",
+  "wf_run_id": "mock_20260304_000000",
+  "started_at": "2026-03-04T00:00:00Z",
+  "ended_at": "2026-03-04T00:04:12Z",
+  "symbols": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD"],
+  "active_symbol": "EURUSD",
+  "regime": "TREND",
+  "regime_probabilities": { "TREND": 0.72, "CHOP": 0.21, "RISK_OFF": 0.07 },
+  "status": "completed_with_warnings",
+  "data_profile": "local_smoke",
+  "pipeline_version": "phase5.1",
+  "git_commit": "a3f9c1b",
+  "config_hash": "sha256:72e84d6a0f12cc3e5b8d94201",
+  "schema_version": "1.0.0",
+  "daily_pnl": 420.50,
+  "daily_pnl_pct": 0.0042,
+  "weekly_pnl": 1240.80,
+  "weekly_pnl_pct": 0.0124,
+  "close_only": false,
+  "ladder_stage": "paper",
+  "gross_exposure_pct": 0.62,
+  "errors": [
+    {
+      "category": "data",
+      "message": "USDCAD: 3 bars missing in 2019-01-14 to 2019-01-16 window",
+      "timestamp": "2026-03-04T00:01:22Z"
+    }
+  ],
+  "warnings": [
+    {
+      "category": "risk",
+      "message": "Max drawdown guardrail triggered at -8.3% during RISK_OFF regime on 2019-03-22. Position sizing halved.",
+      "timestamp": "2026-03-04T00:02:45Z"
+    },
+    {
+      "category": "execution",
+      "message": "2 signals rejected: confidence below threshold (0.52 < 0.55) on GBPUSD",
+      "timestamp": "2026-03-04T00:03:01Z"
+    }
+  ],
+  "notes": [
+    "Walkforward split 1/1 completed. Train: 2018-01-01 to 2018-12-31. Test: 2019-01-01 to 2019-03-31.",
+    "Regime comparison disabled (regime_compare_enabled: false)."
+  ],
+  "metrics": {
+    "sharpe_ratio": 1.34,
+    "total_return": 0.0847,
+    "max_drawdown": -0.083,
+    "win_rate": 0.61,
+    "num_trades": 47,
+    "avg_trade_pnl": 0.00180
+  }
+}

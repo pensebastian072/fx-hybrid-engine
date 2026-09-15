@@ -1,0 +1,5 @@
+timestamp,scan_idx,pair_id,sym_a,sym_b,n_bars,pvalue,beta,spread_std,z_abs_p95,is_cointegrated,reason
+2019-03-29T00:00:00+00:00,0,EURUSD-GBPUSD,EURUSD,GBPUSD,325,,,,,False,insufficient_bars
+2019-03-29T00:00:00+00:00,0,EURUSD-AUDUSD,EURUSD,AUDUSD,325,,,,,False,insufficient_bars
+2019-03-29T00:00:00+00:00,0,GBPUSD-AUDUSD,GBPUSD,AUDUSD,325,,,,,False,insufficient_bars
+2019-03-29T00:00:00+00:00,0,USDCAD-AUDUSD,USDCAD,AUDUSD,325,,,,,False,insufficient_bars

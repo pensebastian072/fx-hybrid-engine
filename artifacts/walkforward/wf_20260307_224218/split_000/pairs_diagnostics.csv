@@ -1,0 +1,5 @@
+pair_id,scan_rows,latest_pvalue,latest_beta,latest_spread_std,latest_z_abs_p95,state,trade_count,primary_reason
+EURUSD-GBPUSD,1,,,,,WATCH,0,insufficient_bars
+EURUSD-AUDUSD,1,,,,,WATCH,0,insufficient_bars
+GBPUSD-AUDUSD,1,,,,,WATCH,0,insufficient_bars
+USDCAD-AUDUSD,1,,,,,WATCH,0,insufficient_bars

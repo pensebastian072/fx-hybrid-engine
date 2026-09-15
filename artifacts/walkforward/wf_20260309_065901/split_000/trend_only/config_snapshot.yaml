@@ -1,0 +1,262 @@
+mode: trend_only
+split_idx: 0
+runtime:
+  precompute_enabled: true
+  mode_reuse_enabled: true
+  cache_fingerprint: 9730ecf88eabb9403e86ad126bb9943d93130ebcd81d1219d66d7cc0034c82b7
+  pipeline_version: phase5.1
+  config_hash: 7365a0110dce3c342bb01f06bc013c8609fa2cddba80b75abc741c65d8ad0d21
+  schema_version: 1.0.0
+  seed: 42
+  regime_compare_enabled: false
+  trend_model_version: in_memory
+  trend_feature_schema_hash: a6b42530d54cedf9d854040403fd2d8c654ea9a0f9f7ef8769c0500fcfac31ed
+config:
+  universe:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    trend_symbols:
+    - EURUSD
+    - GBPUSD
+    - USDJPY
+    - AUDUSD
+    - USDCAD
+  pairs:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    cointegration_pvalue_threshold: 0.05
+    cointegration_method: engle_granger
+    spread_window: 60
+    entry_zscore: 2.0
+    exit_zscore: 1.0
+    max_position_pct: 0.1
+  trend:
+    feature_lookback: 20
+    signal_threshold: 0.7
+    decision_threshold: 0.7
+    sma_fast: 50
+    sma_slow: 200
+    model_path: config/trend_model.pkl
+    model_root: models/trend
+    model_version: latest
+    label_horizon_bars: 8
+    label_threshold_bps: 6.0
+    min_train_rows: 1200
+    class_weight: balanced
+    train_window_days: 270
+    test_window_days: 60
+    step_days: 30
+  regime:
+    n_states: 3
+    obs_window: 30
+    vol_window: 20
+    model_path: config/hmm_model.pkl
+    state_labels:
+      0: TREND
+      1: CHOP
+      2: RISK_OFF
+  risk:
+    max_leverage: 3.0
+    stop_loss_pct: 0.02
+    drawdown_kill_pct: 0.05
+    vol_target_annual: 0.15
+    risk_off_size_multiplier: 0.25
+  data:
+    source: lean_history
+    bar_frequency: 15m
+    history_years: 10
+    openbb_provider: fmp
+  walkforward:
+    train_window_days: 365
+    test_window_days: 90
+    step_days: 30
+    max_splits: null
+    output_root: artifacts/walkforward
+    backend: local
+    data_profile: local_smoke
+    start_date: '2018-01-01'
+    end_date: '2024-12-31'
+    auto_report: true
+  execution_costs:
+    commission_bps: 1.0
+    slippage_bps: 1.0
+  robustness:
+    cost_scenarios:
+    - name: base
+      commission_mult: 1.0
+      slippage_mult: 1.0
+    - name: plus_50
+      commission_mult: 1.5
+      slippage_mult: 1.5
+    - name: plus_100
+      commission_mult: 2.0
+      slippage_mult: 2.0
+    - name: worst_case
+      commission_mult: 2.0
+      slippage_mult: 3.0
+    param_sweep_samples: 8
+    pairs_zscore_jitter_pct: 0.15
+    cointegration_jitter_pct: 0.15
+    trend_threshold_jitter_abs: 0.05
+    risk_cap_jitter_pct: 0.1
+    random_seed: 42
+  proof_gates:
+    min_trend_pnl_in_trend_share: 0.6
+    min_pairs_pnl_in_chop_share: 0.6
+    max_risk_off_pnl_share_abs: 0.1
+    max_pair_profit_concentration: 0.5
+    max_worst_split_drawdown: 0.25
+    min_positive_param_sweep_share: 0.5
+    min_non_negative_sharpe_param_sweep_share: 0.5
+  pairs_policy:
+    scan_enabled: true
+    scan_frequency_bars: 480
+    min_train_bars: 1000
+    p_enter: 0.08
+    p_exit: 0.15
+    p_break: 0.25
+    p_recover: 0.1
+    break_scans_required: 2
+    spread_std_spike_k: 2.5
+    beta_jump_abs: 0.3
+    max_holding_bars: 288
+    cooldown_scans: 2
+  regime_qa:
+    enabled: true
+    max_churn_per_1000_bars: 120.0
+    max_posterior_sum_error: 1.0e-06
+    min_state_occupancy_share: 0.02
+  regime_compare:
+    enabled: false
+    policies:
+    - hmm
+    - heuristic
+    - none
+    heuristic_vol_z_risk_off: 1.5
+    heuristic_mom_z_trend: 0.5
+    heuristic_vol_z_trend_max: 1.0
+  ops:
+    output_root: outputs
+    legacy_output_root: artifacts/ops
+    mode: paper
+    strict_append_audit: true
+    require_run_id_columns: true
+  health_monitor:
+    state_machine_thresholds:
+      data_stale_seconds: 300
+      degraded_rejects: 3
+      broker_down_rejects: 8
+  reconciliation:
+    enabled: true
+    interval_seconds: 60
+    qty_tolerance: 1.0e-08
+    auto_flatten_on_persistent_mismatch: false
+    persistent_mismatch_cycles: 3
+  circuit_breakers:
+    daily_loss_limit: 0.03
+    weekly_loss_limit: 0.06
+    max_consecutive_losses: 5
+    vol_spike_threshold: 2.5
+    reject_spike_threshold: 5
+    symbol_cooldown_minutes: 60
+  micro_live_ladder:
+    active_stage: stage0_paper
+    universe_policy: always_full
+    stage0_paper:
+      exposure_multiplier: 0.1
+      loss_limit_multiplier: 0.4
+    stage1_micro:
+      exposure_multiplier: 0.25
+      loss_limit_multiplier: 0.5
+    stage2_small:
+      exposure_multiplier: 0.6
+      loss_limit_multiplier: 0.75
+    stage3_scale:
+      exposure_multiplier: 1.0
+      loss_limit_multiplier: 1.0
+    stage_1:
+      exposure_multiplier: 0.25
+      loss_limit_multiplier: 0.5
+    stage_2:
+      exposure_multiplier: 0.6
+      loss_limit_multiplier: 0.75
+    stage_3:
+      exposure_multiplier: 1.0
+      loss_limit_multiplier: 1.0
+  weekly_evaluation:
+    enabled: true
+    schedule_hint: 0 6 * * 1
+    profile: local_smoke
+    max_splits: 1
+    run_robustness: false
+  model_registry:
+    root: artifacts/model_registry
+    trend_refresh_days: 7
+    hmm_refresh_days: 7
+    pairs_refresh_days: 1
+  alerts:
+    enabled: true
+    output_path: alerts.jsonl
+    min_severity: warning
+  live_execution:
+    rail: qc_paper
+    broker: quantconnect
+  qc_runtime:
+    enabled: true
+    resolution: 15m
+    state_store_namespace: fxhe
+    health_check_interval_seconds: 60
+    reconcile_interval_seconds: 60
+    order_reject_lookback: 20
+    cancel_on_close_only: false
+  promotion:
+    paper_window_days: 14
+    max_rejects_in_window: 10
+    max_stale_events_in_window: 5
+    max_reconcile_failures_in_window: 3
+    require_attribution_gate: true
+    require_cost_gate: true
+    require_drawdown_gate: true
+  live_precheck:
+    required_env_vars:
+    - QC_USER_ID
+    - QC_API_TOKEN
+    extra_required_env_vars: []
+    require_emergency_flatten: true
+    ladder_config_path: config/ladder.yaml
+  tastytrade:
+    api_base_url: https://api.tastytrade.com
+    oauth_token_url: https://api.tastytrade.com/oauth2/token
+    accounts_url: https://api.tastytrade.com/customers/me/accounts
+    balances_url_template: https://api.tastytrade.com/accounts/{account_number}/balances
+    client_id_env: TASTYTRADE_CLIENT_ID
+    client_secret_env: TASTYTRADE_CLIENT_SECRET
+    refresh_token_env: TASTYTRADE_REFRESH_TOKEN
+    account_number_env: TASTYTRADE_ACCOUNT_NUMBER
+    validate_api_on_precheck: true
+    require_account_number: false
+    require_symbol_map: true
+    symbol_map:
+      AUDUSD: 6A
+      EURUSD: 6E
+      GBPUSD: 6B
+      USDJPY: 6J
+      USDCAD: 6C
+  friction_model:
+    commission_bps: 1.0
+    slippage_bps: 1.0
+    spread_bps_proxy: 0.5

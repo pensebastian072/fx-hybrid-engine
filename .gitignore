@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Trained model artifacts
+config/hmm_model.pkl
+config/trend_model.pkl
+
+# Lean CLI artifacts
+lean_project/backtests/
+lean_project/.lean/
+*.lean_config
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+ui-dev-*.err
+
+# Temporary sweep config
+config/_sweep_tmp.yaml
+
+# Local outputs and raw data dumps
+outputs/
+data/
+artifacts/latest_run/
+artifacts/run_history/
+
+# External ML4T reference repos (cloned locally, not committed)
+vendor/
+
+# Build / session noise - not part of the published source
+copilot-session-*.md
+lint-output.txt
+lint_report.txt
+.venv/
+node_modules/
+.next/

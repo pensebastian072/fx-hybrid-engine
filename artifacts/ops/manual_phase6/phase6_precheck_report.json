@@ -1,0 +1,61 @@
+{
+  "run_dir": "artifacts\\ops\\manual_phase6",
+  "strict_full": true,
+  "contract_ok": true,
+  "contract_issues": [],
+  "gates": [
+    {
+      "name": "stale_data_close_only_blocks_entries",
+      "passed": true,
+      "details": {
+        "health": {
+          "state": "DATA_STALE",
+          "healthy": false,
+          "close_only": true,
+          "reasons": [
+            "stale_data"
+          ]
+        },
+        "blocked_actions": [
+          {
+            "symbol": "EURUSD",
+            "reason": "new_entry_blocked",
+            "current_weight": 0.0,
+            "proposed_target": 0.15,
+            "sanitized_target": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "name": "reconciliation_mismatch_handled",
+      "passed": true,
+      "details": {
+        "pause_entries": true,
+        "attempt_reconcile": true,
+        "flatten_required": false
+      }
+    },
+    {
+      "name": "daily_loss_breaker_triggers",
+      "passed": true,
+      "details": {
+        "triggered": [
+          "daily_loss_limit"
+        ],
+        "pause_entries": true,
+        "reduce_exposure_multiplier": 1.0,
+        "symbol_cooldown_minutes": 60
+      }
+    },
+    {
+      "name": "operations_runbook_present",
+      "passed": true,
+      "details": {
+        "docs_path": "C:\\\\path\\\\to\\\\fx-hybrid-engine\\docs\\OPERATIONS.md",
+        "exists": true
+      }
+    }
+  ],
+  "pass": true
+}

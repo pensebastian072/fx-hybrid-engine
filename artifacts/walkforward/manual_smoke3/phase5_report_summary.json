@@ -1,0 +1,17 @@
+{
+  "run_dir": "artifacts\\walkforward\\manual_smoke3",
+  "final_go": false,
+  "go_no_go": {
+    "hybrid_beats_pairs_only": true,
+    "hybrid_beats_trend_only": true,
+    "worst_split_drawdown_survivable": true,
+    "costs_do_not_kill_edge": true,
+    "attribution_matches_theory": false,
+    "pair_profit_concentration_ok": true,
+    "param_sweep_positive_return_share_ok": false,
+    "param_sweep_sharpe_share_ok": false
+  },
+  "median_hybrid_total_return": 0.0038499838546114,
+  "median_hybrid_sharpe": 0.6497310818747545,
+  "worst_split_max_drawdown": 0.0036850867620229
+}

@@ -1,0 +1,42 @@
+{
+  "wf_run_dir": "artifacts\\walkforward\\wf_20260307_224218",
+  "paper_run_dir": "outputs\\paper\\2026-03-08\\paper_20260307_224218",
+  "window_days": 14,
+  "pass": false,
+  "checks": {
+    "phase5_final_go": false,
+    "proof_attribution_gate": false,
+    "proof_cost_gate": true,
+    "proof_drawdown_gate": true,
+    "reject_incidents_ok": true,
+    "stale_incidents_ok": true,
+    "reconcile_incidents_ok": true
+  },
+  "failed_reasons": [
+    "phase5_final_go",
+    "proof_attribution_gate"
+  ],
+  "incident_counts": {
+    "reject_count": 0,
+    "stale_count": 0,
+    "reconcile_failures": 0
+  },
+  "ops_summary": {
+    "run_dir": "outputs\\paper\\2026-03-08\\paper_20260307_224218",
+    "pnl_total": 0.0,
+    "max_drawdown": 0.0,
+    "mean_abs_exposure": 0.0,
+    "max_abs_exposure": 0.0,
+    "reject_count": 0,
+    "stale_event_count": 0,
+    "close_only_event_count": 0,
+    "reconciliation_failure_count": 0,
+    "reconciliation_event_count": 0,
+    "regime_mix": {}
+  },
+  "ladder": {
+    "action": "hold",
+    "current_stage": "stage0_paper",
+    "next_stage": "stage0_paper"
+  }
+}

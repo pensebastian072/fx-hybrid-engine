@@ -1,0 +1,28 @@
+active_stage: stage0_paper
+
+stages:
+  stage0_paper:
+    max_gross_exposure: 0.25
+    per_symbol_risk_cap: 0.05
+    max_open_positions: 3
+    breaker_loss_multiplier: 0.50
+  stage1_micro:
+    max_gross_exposure: 0.50
+    per_symbol_risk_cap: 0.10
+    max_open_positions: 5
+    breaker_loss_multiplier: 0.75
+  stage2_small:
+    max_gross_exposure: 0.85
+    per_symbol_risk_cap: 0.15
+    max_open_positions: 8
+    breaker_loss_multiplier: 0.90
+  stage3_scale:
+    max_gross_exposure: 1.00
+    per_symbol_risk_cap: 0.20
+    max_open_positions: 12
+    breaker_loss_multiplier: 1.00
+
+aliases:
+  stage_1: stage1_micro
+  stage_2: stage2_small
+  stage_3: stage3_scale

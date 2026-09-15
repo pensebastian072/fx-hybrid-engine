@@ -1,0 +1,16 @@
+{
+  "engine_x_regime": [
+    {"engine_source":"trend","entry_regime":"TREND","n_trades":28,"total_pnl":0.042,"win_rate":0.68,"pnl_share_within_engine":0.85},
+    {"engine_source":"trend","entry_regime":"CHOP","n_trades":8,"total_pnl":-0.008,"win_rate":0.38,"pnl_share_within_engine":0.10},
+    {"engine_source":"pairs","entry_regime":"CHOP","n_trades":6,"total_pnl":0.018,"win_rate":0.67,"pnl_share_within_engine":0.80}
+  ],
+  "by_engine": [
+    {"engine_source":"trend","n_trades":36,"total_pnl":0.034,"win_rate":0.61},
+    {"engine_source":"pairs","n_trades":6,"total_pnl":0.018,"win_rate":0.67}
+  ],
+  "by_regime": [
+    {"entry_regime":"TREND","n_trades":28,"total_pnl":0.042,"win_rate":0.68},
+    {"entry_regime":"CHOP","n_trades":14,"total_pnl":0.010,"win_rate":0.50},
+    {"entry_regime":"RISK_OFF","n_trades":0,"total_pnl":0.0,"win_rate":0.0}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "n_bars": 64,
+  "n_transitions": 25,
+  "transitions_per_1000_bars": 390.625,
+  "occupancy": {
+    "TREND": 0.359375,
+    "CHOP": 0.25,
+    "RISK_OFF": 0.390625
+  },
+  "max_posterior_sum_error": 1.3988810110276972e-14,
+  "checks": {
+    "posterior_sum_ok": true,
+    "churn_ok": false,
+    "occupancy_ok": true
+  },
+  "pass": false,
+  "thresholds": {
+    "enabled": true,
+    "max_churn_per_1000_bars": 120.0,
+    "max_posterior_sum_error": 1e-06,
+    "min_state_occupancy_share": 0.02
+  },
+  "hmm_state_map": {
+    "0": "TREND",
+    "1": "CHOP",
+    "2": "RISK_OFF"
+  }
+}

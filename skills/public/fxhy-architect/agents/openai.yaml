@@ -1,0 +1,4 @@
+interface:
+  display_name: "FXHY Architect"
+  short_description: "Plan routing and validation flow"
+  default_prompt: "Use $fxhy-architect to scope this fx-hybrid-engine task, classify the role, and produce a validation-ready brief."

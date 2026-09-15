@@ -1,0 +1,4 @@
+interface:
+  display_name: "FXHY Review Validator"
+  short_description: "Review delivery and validate changes"
+  default_prompt: "Use $fxhy-review-validator to review this change for regressions, missing tests, and contract drift."

@@ -1,0 +1,9 @@
+[
+  {"timestamp":"2024-01-02T00:00:00Z","pairs_alloc":0.0,"trend_alloc":0.0,"total_alloc":0.0,"regime_label":"RISK_OFF"},
+  {"timestamp":"2024-01-08T00:00:00Z","pairs_alloc":0.3,"trend_alloc":0.0,"total_alloc":0.3,"regime_label":"CHOP"},
+  {"timestamp":"2024-01-09T00:00:00Z","pairs_alloc":0.35,"trend_alloc":0.0,"total_alloc":0.35,"regime_label":"CHOP"},
+  {"timestamp":"2024-01-15T00:00:00Z","pairs_alloc":0.0,"trend_alloc":0.5,"total_alloc":0.5,"regime_label":"TREND"},
+  {"timestamp":"2024-01-16T00:00:00Z","pairs_alloc":0.0,"trend_alloc":0.65,"total_alloc":0.65,"regime_label":"TREND"},
+  {"timestamp":"2024-01-22T00:00:00Z","pairs_alloc":0.0,"trend_alloc":0.7,"total_alloc":0.7,"regime_label":"TREND"},
+  {"timestamp":"2024-01-23T00:00:00Z","pairs_alloc":0.25,"trend_alloc":0.0,"total_alloc":0.25,"regime_label":"CHOP"}
+]

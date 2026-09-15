@@ -1,0 +1,17 @@
+{
+  "total_return": 0.002420232195961658,
+  "sharpe": 0.24113024358889507,
+  "max_drawdown": 0.014590214311188203,
+  "win_rate": 0.09375,
+  "trades": 8,
+  "mode": "trend_only",
+  "split_idx": 0,
+  "train_start": "2018-01-01T00:00:00+00:00",
+  "train_end": "2019-01-01T00:00:00+00:00",
+  "test_start": "2019-01-01T00:00:00+00:00",
+  "test_end": "2019-04-01T00:00:00+00:00",
+  "precompute_enabled": true,
+  "mode_reuse_enabled": true,
+  "cache_fingerprint": "19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2",
+  "pipeline_version": "phase5.1"
+}

@@ -1,0 +1,101 @@
+mode: pairs_only
+split_idx: 1
+config:
+  universe:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    trend_symbols:
+    - EURUSD
+    - GBPUSD
+    - USDJPY
+    - AUDUSD
+    - USDCAD
+  pairs:
+    pairs:
+    - - EURUSD
+      - GBPUSD
+    - - EURUSD
+      - AUDUSD
+    - - GBPUSD
+      - AUDUSD
+    - - USDCAD
+      - AUDUSD
+    cointegration_pvalue_threshold: 0.05
+    spread_window: 60
+    entry_zscore: 2.0
+    exit_zscore: 1.0
+    max_position_pct: 0.1
+  trend:
+    feature_lookback: 20
+    signal_threshold: 0.7
+    sma_fast: 50
+    sma_slow: 200
+    model_path: config/trend_model.pkl
+  regime:
+    n_states: 3
+    obs_window: 30
+    vol_window: 20
+    model_path: config/hmm_model.pkl
+    state_labels:
+      0: TREND
+      1: CHOP
+      2: RISK_OFF
+  risk:
+    max_leverage: 3.0
+    stop_loss_pct: 0.02
+    drawdown_kill_pct: 0.05
+    vol_target_annual: 0.15
+    risk_off_size_multiplier: 0.25
+  data:
+    bar_frequency: 1d
+    history_years: 10
+    openbb_provider: fmp
+  walkforward:
+    train_window_days: 365
+    test_window_days: 90
+    step_days: 30
+    max_splits: null
+    output_root: artifacts/walkforward
+    backend: local
+    data_profile: local_smoke
+    start_date: '2018-01-01'
+    end_date: '2024-12-31'
+    auto_report: true
+  execution_costs:
+    commission_bps: 1.0
+    slippage_bps: 1.0
+  robustness:
+    cost_scenarios:
+    - name: base
+      commission_mult: 1.0
+      slippage_mult: 1.0
+    - name: plus_50
+      commission_mult: 1.5
+      slippage_mult: 1.5
+    - name: plus_100
+      commission_mult: 2.0
+      slippage_mult: 2.0
+    - name: worst_case
+      commission_mult: 2.0
+      slippage_mult: 3.0
+    param_sweep_samples: 8
+    pairs_zscore_jitter_pct: 0.15
+    cointegration_jitter_pct: 0.15
+    trend_threshold_jitter_abs: 0.05
+    risk_cap_jitter_pct: 0.1
+    random_seed: 42
+  proof_gates:
+    min_trend_pnl_in_trend_share: 0.6
+    min_pairs_pnl_in_chop_share: 0.6
+    max_risk_off_pnl_share_abs: 0.1
+    max_pair_profit_concentration: 0.5
+    max_worst_split_drawdown: 0.25
+    min_positive_param_sweep_share: 0.5
+    min_non_negative_sharpe_param_sweep_share: 0.5

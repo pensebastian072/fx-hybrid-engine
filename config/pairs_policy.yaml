@@ -1,0 +1,60 @@
+# Pairs Policy Configuration
+# Edit this file to adjust pair selection and breakdown thresholds without touching code.
+# Changes take effect on next backtest/paper run restart.
+
+# ── Candidate pair universe ─────────────────────────────────────────────────────
+# Each entry is a [symbol_A, symbol_B] pair.
+# Only pairs passing p_enter are considered TRADABLE.
+universe:
+  pairs:
+    - ["EURUSD", "GBPUSD"]
+    - ["EURUSD", "AUDUSD"]
+    - ["GBPUSD", "AUDUSD"]
+    - ["USDCAD", "AUDUSD"]
+
+# ── Cointegration scan schedule ─────────────────────────────────────────────────
+scan:
+  enabled: true
+  # How often to re-scan (in bars). Default: 480 × 15m = 5 days.
+  # On 1d bars set to ~5.
+  frequency_bars: 480
+  # Minimum in-sample bars needed before scanning. 1000 × 15m ≈ 10 trading weeks.
+  min_train_bars: 1000
+
+# ── Hysteresis thresholds ───────────────────────────────────────────────────────
+# p_enter: p-value below which pair becomes TRADABLE
+# p_exit:  p-value above which TRADABLE pair transitions to WATCH (soft warning)
+# p_break: p-value above which WATCH pair becomes DISABLED
+# p_recover: p-value below which DISABLED pair can transition back to WATCH
+hysteresis:
+  p_enter: 0.08
+  p_exit: 0.15
+  p_break: 0.25
+  p_recover: 0.10
+  # How many consecutive failing scans required to trigger breakdown
+  break_scans_required: 2
+
+# ── Relationship breakdown triggers ─────────────────────────────────────────────
+breakdown:
+  # Spread standard-deviation spike: disable if spread_std > k × median_spread_std
+  spread_std_spike_k: 2.5
+  # Beta drift: disable if |beta_now - beta_prev| exceeds this absolute change
+  beta_jump_abs: 0.30
+  # Time stop: maximum bars a position may remain open before forced exit
+  max_holding_bars: 288   # 288 × 15m = 3 trading days
+
+# ── Cooldown after disable ──────────────────────────────────────────────────────
+cooldown:
+  # How many scan intervals to wait before attempting re-entry
+  scans: 2
+
+# ── Entry / exit z-score bands ──────────────────────────────────────────────────
+# These mirror pairs_engine settings but are exposed here for your trader friend.
+# WARNING: these override pairs_engine if pairs_policy.yaml is loaded by the engine.
+zscore:
+  entry: 2.0   # enter when |z| > entry
+  exit: 1.0    # exit when |z| < exit
+
+# ── Sizing ──────────────────────────────────────────────────────────────────────
+sizing:
+  max_position_pct: 0.10   # max fraction of portfolio per pair leg

@@ -1,0 +1,24 @@
+{
+  "run_dir": "artifacts\\walkforward\\wf_20260307_224218",
+  "final_go": false,
+  "go_no_go": {
+    "hybrid_beats_pairs_only": true,
+    "hybrid_beats_trend_only": true,
+    "worst_split_drawdown_survivable": true,
+    "costs_do_not_kill_edge": true,
+    "attribution_matches_theory": false,
+    "pair_profit_concentration_ok": true,
+    "trend_model_version_consistent": true,
+    "param_sweep_positive_return_share_ok": false,
+    "param_sweep_sharpe_share_ok": false
+  },
+  "median_hybrid_total_return": 0.0213642786240655,
+  "median_hybrid_sharpe": 10.303740447672087,
+  "worst_split_max_drawdown": 0.0227091802284482,
+  "trend_model_versions": [
+    "in_memory"
+  ],
+  "trend_feature_schema_hashes": [
+    "a6b42530d54cedf9d854040403fd2d8c654ea9a0f9f7ef8769c0500fcfac31ed"
+  ]
+}

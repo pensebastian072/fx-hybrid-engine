@@ -1,0 +1,26 @@
+{
+  "pass": false,
+  "checks": {
+    "phase5_final_go": false,
+    "proof_attribution_gate": false,
+    "proof_cost_gate": true,
+    "proof_drawdown_gate": true,
+    "reject_incidents_ok": true,
+    "stale_incidents_ok": true,
+    "reconcile_incidents_ok": true
+  },
+  "failed_reasons": ["phase5_final_go","proof_attribution_gate"],
+  "incident_counts": {
+    "daily_loss": 0,
+    "weekly_loss": 0,
+    "vol_spike_throttle": 0,
+    "reject_spike_throttle": 2,
+    "stale_data": 1,
+    "reconciliation_mismatch": 0,
+    "reject_count": 2,
+    "stale_count": 1,
+    "reconcile_failures": 0
+  },
+  "ops_summary": {"pnl_total":0.0,"max_drawdown":0.0,"mean_abs_exposure":0.0,"reject_count":0,"stale_event_count":0,"close_only_event_count":0,"regime_mix":{}},
+  "ladder": {"action":"hold","current_stage":"stage0_paper","next_stage":"stage0_paper"}
+}

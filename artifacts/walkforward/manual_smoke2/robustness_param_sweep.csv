@@ -1,0 +1,1 @@
+sample_idx,entry_zscore,exit_zscore,cointegration_pvalue_threshold,trend_signal_threshold,max_leverage,drawdown_kill_pct,median_total_return,median_sharpe,worst_max_drawdown

@@ -1,0 +1,33 @@
+execution_mode: backtest
+brokerage: oanda
+account_type: margin
+data_source: cloud
+local_data_dir: null
+phase2_pairs_gating_enabled: false
+live_output_root: outputs/live
+live_persistence_enabled: null
+data_stale_minutes: 45
+
+max_gross_leverage: 2.0
+max_pair_notional_pct_nav: 0.25
+max_symbol_notional_pct_nav: 0.15
+max_open_pairs: 2
+max_open_trend_positions: 3
+
+trend_notional_pct_nav: 0.10
+pairs_notional_pct_nav: 0.12
+
+block_new_entries: false
+kill_switch_enabled: false
+kill_switch_reason: MANUAL_KILL_SWITCH
+gap_warn_threshold_minutes: 30
+strict_bar_ordering: true
+
+# Cross-engine signal alignment gate.
+# Set to true to require a pairs signal for a symbol before allowing a trend open.
+require_signal_alignment: false
+alignment_min_confidence: 0.10
+
+oanda_environment: practice
+oanda_account_id_env: OANDA_ACCOUNT_ID
+oanda_api_token_env: OANDA_API_TOKEN

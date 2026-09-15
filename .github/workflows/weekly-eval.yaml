@@ -1,0 +1,39 @@
+name: Weekly Evaluation
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  weekly-eval:
+    name: Weekly Eval (Walkforward + Decision)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run weekly evaluation
+        run: fxhe-weekly-eval --config config/default.yaml --run-id weekly_eval
+
+      - name: Bootstrap paper telemetry seed
+        run: fxhe-paper-session --config config/default.yaml --run-id weekly_eval_paper --output-dir artifacts/ops/weekly_eval_paper
+
+      - name: Run promotion check
+        run: fxhe-promote-check --config config/default.yaml --wf-id weekly_eval --paper-run-dir artifacts/ops/weekly_eval_paper --out artifacts/walkforward/weekly_eval/promotion_decision.json
+
+      - name: Upload weekly artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-eval-artifacts
+          path: artifacts/walkforward/weekly_eval/

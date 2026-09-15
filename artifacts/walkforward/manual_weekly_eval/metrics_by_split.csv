@@ -1,0 +1,4 @@
+split_idx,mode,precompute_enabled,mode_reuse_enabled,cache_fingerprint,pipeline_version,total_return,sharpe,max_drawdown,win_rate,trades
+0,hybrid,True,True,19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2,phase5.1,0.007699967709222877,1.299462163749509,0.0036850867620229475,0.046875,8
+0,pairs_only,True,True,19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2,phase5.1,0.0,0.0,0.0,0.0,0
+0,trend_only,True,True,19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2,phase5.1,0.002420232195961658,0.24113024358889507,0.014590214311188203,0.09375,8

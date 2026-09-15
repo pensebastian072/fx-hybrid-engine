@@ -1,0 +1,10 @@
+mode: heuristic
+hmm_lookback_bars: 8640
+hmm_retrain_frequency: weekly
+hmm_n_components: 3
+hmm_covariance_type: full
+hmm_n_iter: 200
+hmm_random_state: 42
+trend_prob_threshold: 0.6
+chop_prob_threshold: 0.6
+risk_off_prob_threshold: 0.6

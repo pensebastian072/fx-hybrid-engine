@@ -1,0 +1,10 @@
+{
+  "cost_sweep": [
+    {"scenario":"base","commission_bps":1.0,"slippage_bps":1.0,"total_return":0.0214,"sharpe":1.052,"max_drawdown":0.023,"win_rate":0.172},
+    {"scenario":"plus_50","commission_bps":1.5,"slippage_bps":1.5,"total_return":0.0146,"sharpe":0.739,"max_drawdown":0.023,"win_rate":0.172},
+    {"scenario":"plus_100","commission_bps":2.0,"slippage_bps":2.0,"total_return":0.0080,"sharpe":0.422,"max_drawdown":0.024,"win_rate":0.172},
+    {"scenario":"worst_case","commission_bps":2.0,"slippage_bps":3.0,"total_return":0.0013,"sharpe":0.104,"max_drawdown":0.024,"win_rate":0.172}
+  ],
+  "param_sweep": [],
+  "diagnostics": {"cost_sensitivity": "moderate", "sharpe_at_worst_case": 0.104}
+}

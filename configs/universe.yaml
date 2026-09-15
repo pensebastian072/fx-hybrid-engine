@@ -1,0 +1,4 @@
+asset_type: forex
+pairs: [EURUSD, GBPUSD, USDJPY, AUDUSD, NZDUSD, USDCAD, USDCHF]
+subscription_resolution: Minute
+consolidated_bar_minutes: 15

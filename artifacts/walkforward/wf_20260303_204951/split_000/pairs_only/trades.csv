@@ -1,0 +1,1 @@
+entry_timestamp,exit_timestamp,symbol,engine_source,entry_regime,exit_regime,pair_id,entry_price,exit_price,entry_weight,entry_regime_prob_trend,entry_regime_prob_chop,entry_regime_prob_risk_off,close_reason,pnl,mode

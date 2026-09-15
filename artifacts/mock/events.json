@@ -1,0 +1,70 @@
+[
+  {
+    "timestamp": "2026-03-04T00:04:00Z",
+    "event_type": "regime_transition",
+    "message": "Regime shifted CHOP → TREND (P=0.72). Trend engine activated.",
+    "reason_code": "hmm_posterior_shift"
+  },
+  {
+    "timestamp": "2026-03-04T00:03:01Z",
+    "event_type": "signal_reject",
+    "message": "2 signals rejected: confidence below threshold (0.52 < 0.55) on GBPUSD",
+    "symbols": ["GBPUSD"],
+    "reason_code": "confidence_threshold"
+  },
+  {
+    "timestamp": "2026-03-04T00:02:45Z",
+    "event_type": "breaker_trigger",
+    "message": "Max drawdown guardrail triggered at -8.3%. Position sizing halved.",
+    "action": "size_halved",
+    "reason_code": "drawdown_kill"
+  },
+  {
+    "timestamp": "2026-03-04T00:02:10Z",
+    "event_type": "pair_disable",
+    "message": "EURUSD/GBPUSD disabled: p-value deteriorated to 0.12 (threshold 0.05).",
+    "symbols": ["EURUSD", "GBPUSD"],
+    "reason_code": "pval_fail"
+  },
+  {
+    "timestamp": "2026-03-04T00:01:22Z",
+    "event_type": "stale_data",
+    "message": "USDCAD: 3 bars missing in 2019-01-14 to 2019-01-16 window.",
+    "symbols": ["USDCAD"],
+    "reason_code": "missing_bars"
+  },
+  {
+    "timestamp": "2026-03-04T00:00:58Z",
+    "event_type": "pair_enable",
+    "message": "USDCAD/AUDUSD re-enabled after cooldown. p-value: 0.031.",
+    "symbols": ["USDCAD", "AUDUSD"],
+    "reason_code": "cooldown_expired"
+  },
+  {
+    "timestamp": "2026-03-03T23:50:00Z",
+    "event_type": "deploy_change",
+    "message": "Config updated: entry_zscore 2.0 → 2.2, signal_threshold 0.70 → 0.72.",
+    "reason_code": "config_update"
+  },
+  {
+    "timestamp": "2026-03-03T23:40:00Z",
+    "event_type": "regime_transition",
+    "message": "Regime shifted TREND → CHOP (P=0.68). Pairs engine activated.",
+    "reason_code": "hmm_posterior_shift"
+  },
+  {
+    "timestamp": "2026-03-03T23:30:00Z",
+    "event_type": "close_only_engage",
+    "message": "Close-only mode engaged: stale data detected (12 min gap on AUDUSD).",
+    "symbols": ["AUDUSD"],
+    "action": "close_only",
+    "reason_code": "stale_data"
+  },
+  {
+    "timestamp": "2026-03-03T23:25:00Z",
+    "event_type": "close_only_disengage",
+    "message": "Close-only mode disengaged: data feed restored.",
+    "action": "resume",
+    "reason_code": "feed_restored"
+  }
+]

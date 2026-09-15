@@ -1,0 +1,27 @@
+{
+  "source": "mock",
+  "run_manifest": {
+    "run_id": "paper_20260303_204951",
+    "git_commit": "a3f9c1b",
+    "config_hash": "sha256:72e84d6a0f12cc3e5b8d94201a3f9c1b",
+    "schema_version": "1.0.0",
+    "created_at_utc": "2026-03-03T20:49:51Z",
+    "seed": 42,
+    "precompute_enabled": true,
+    "mode_reuse_enabled": true,
+    "data_profile": "local_smoke",
+    "pipeline_version": "phase5.1"
+  },
+  "stale_data_count": 3,
+  "missing_bars_count": 7,
+  "orders_per_hour": 4.2,
+  "reject_rate": 0.08,
+  "objectstore_status": "not_configured",
+  "last_bars": [
+    { "timestamp": "2026-03-04T00:00:00Z", "symbol": "EURUSD", "close": 1.08312 },
+    { "timestamp": "2026-03-04T00:00:00Z", "symbol": "GBPUSD", "close": 1.26781 },
+    { "timestamp": "2026-03-04T00:00:00Z", "symbol": "USDJPY", "close": 149.843 },
+    { "timestamp": "2026-03-04T00:00:00Z", "symbol": "AUDUSD", "close": 0.65012 },
+    { "timestamp": "2026-03-04T00:00:00Z", "symbol": "USDCAD", "close": 1.35891 }
+  ]
+}

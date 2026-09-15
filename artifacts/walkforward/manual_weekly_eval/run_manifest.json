@@ -1,0 +1,54 @@
+{
+  "wf_run_id": "manual_weekly_eval",
+  "created_at_utc": "2026-02-27T14:26:49.121067+00:00",
+  "config_path": "C:\\\\path\\\\to\\\\fx-hybrid-engine\\config\\default.yaml",
+  "precompute_enabled": true,
+  "mode_reuse_enabled": true,
+  "skip_robustness": true,
+  "data_profile": "local_smoke",
+  "symbols": [
+    "AUDUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDCAD",
+    "USDJPY"
+  ],
+  "pair_list": [
+    [
+      "EURUSD",
+      "GBPUSD"
+    ],
+    [
+      "EURUSD",
+      "AUDUSD"
+    ],
+    [
+      "GBPUSD",
+      "AUDUSD"
+    ],
+    [
+      "USDCAD",
+      "AUDUSD"
+    ]
+  ],
+  "trend_symbols": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCAD"
+  ],
+  "split_params": {
+    "train_window_days": 365,
+    "test_window_days": 90,
+    "step_days": 30,
+    "max_splits": 1,
+    "generated_splits": 1
+  },
+  "cost_params": {
+    "commission_bps": 1.0,
+    "slippage_bps": 1.0
+  },
+  "cache_fingerprint": "19c88ec59d9a9799e4a6c75c14f3ab22e4439d96567b92a27db0cbb9c3d0e0f2",
+  "pipeline_version": "phase5.1"
+}

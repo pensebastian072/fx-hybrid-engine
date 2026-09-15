@@ -1,0 +1,314 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  lint-and-test:
+    name: Lint & Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint with ruff
+        run: ruff check src/ tests/
+
+      - name: Run unit tests
+        run: pytest tests/unit/ -q --tb=short --cov=fx_hybrid_engine --cov-report=term-missing
+
+  integration-smoke:
+    name: Integration Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run integration smoke tests
+        run: pytest tests/integration -q -m "integration and not slow" --durations=10
+
+  walkforward-contract-smoke:
+    name: Walkforward Contract Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Generate walkforward smoke artifacts
+        run: fxhe-walkforward --config config/default.yaml --run-id ci_wf_smoke --max-splits 1 --skip-robustness --no-report
+
+      - name: Validate walkforward artifact contract
+        run: fxhe-validate-run --run-dir artifacts/walkforward/ci_wf_smoke
+
+  trend-training-smoke:
+    name: Trend Training Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Build smoke config
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          raw = yaml.safe_load(Path("config/default.yaml").read_text(encoding="utf-8"))
+          raw["walkforward"]["start_date"] = "2024-01-01"
+          raw["walkforward"]["end_date"] = "2024-03-01"
+          raw["data"]["source"] = "lean_history"
+          raw["universe"]["trend_symbols"] = ["EURUSD", "GBPUSD"]
+          raw["trend_engine"]["sma_fast"] = 20
+          raw["trend_engine"]["sma_slow"] = 60
+          raw["trend_engine"]["feature_lookback"] = 20
+          raw["trend_engine"]["label_horizon_bars"] = 4
+          raw["trend_engine"]["label_threshold_bps"] = 2.0
+          raw["trend_engine"]["min_train_rows"] = 100
+          raw["trend_engine"]["train_window_days"] = 30
+          raw["trend_engine"]["test_window_days"] = 10
+          raw["trend_engine"]["step_days"] = 10
+          raw["trend_engine"]["model_root"] = "artifacts/models/trend"
+          Path("config/ci_trend_smoke.yaml").write_text(yaml.safe_dump(raw, sort_keys=False), encoding="utf-8")
+          PY
+
+      - name: Build trend dataset smoke artifacts
+        run: fxhe-build-trend-dataset --config config/ci_trend_smoke.yaml --run-id ci_trend_dataset --output-dir artifacts/trend_dataset/ci_trend_dataset
+
+      - name: Train trend model smoke artifact
+        run: fxhe-train-trend --config config/ci_trend_smoke.yaml --model-version ci_trend_model --dataset-path artifacts/trend_dataset/ci_trend_dataset/trend_dataset.parquet --output-root artifacts/models/trend
+
+  phase1-smoke:
+    name: Phase1 Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Generate Phase1 smoke artifacts
+        run: fxhe-phase1 --config config/default.yaml --profile smoke --run-id ci_phase1
+
+      - name: Validate Phase1 ops contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from fx_hybrid_engine.ops.schema import render_ops_issues, validate_ops_run_dir
+
+          paths = sorted(Path("outputs/phase1").glob("*/ci_phase1"))
+          if not paths:
+              raise SystemExit("Missing Phase1 run directory outputs/phase1/*/ci_phase1")
+          run_dir = paths[-1]
+          ok, issues = validate_ops_run_dir(run_dir, require_run_id_columns=True, strict_append_audit=True)
+          if not ok:
+              raise SystemExit(render_ops_issues(issues))
+          print(f"Validated Phase1 run dir: {run_dir}")
+          PY
+
+  phase6-precheck-smoke:
+    name: Phase6 Precheck Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Bootstrap paper-session artifacts
+        run: fxhe-paper-session --config config/default.yaml --run-id ci_precheck --output-dir artifacts/ops/ci_precheck
+
+      - name: Run strict phase6 precheck
+        run: fxhe-phase6-precheck --config config/default.yaml --run-dir artifacts/ops/ci_precheck
+
+  promote-check-smoke:
+    name: Promote Check Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Create paper telemetry seed
+        run: fxhe-paper-session --config config/default.yaml --run-id ci_promote_paper --output-dir artifacts/ops/ci_promote_paper
+
+      - name: Create walkforward proof seed
+        run: fxhe-walkforward --config config/default.yaml --run-id ci_promote_wf --max-splits 1 --skip-robustness
+
+      - name: Run promotion check
+        run: fxhe-promote-check --config config/default.yaml --wf-id ci_promote_wf --paper-run-dir artifacts/ops/ci_promote_paper
+
+  live-precheck-smoke:
+    name: Live Precheck Smoke
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Seed model registry freshness
+        run: |
+          python - <<'PY'
+          from datetime import UTC, datetime
+          from fx_hybrid_engine.ops.model_registry import register_model_version
+          from fx_hybrid_engine.utils.config import load_config
+
+          cfg = load_config("config/default.yaml")
+          now = datetime.now(UTC).isoformat()
+          for mt in ("trend", "hmm", "pairs"):
+              register_model_version(
+                  cfg.model_registry,
+                  run_id=f"ci_{mt}",
+                  model_type=mt,
+                  model_version="v1",
+                  training_window="2026-01-01..2026-02-01",
+                  feature_schema_version="f1",
+                  data_hash="h1",
+                  artifact_path="artifact/path",
+                  created_at_utc=now,
+              )
+          PY
+
+      - name: Run live precheck
+        run: fxhe-live-precheck --config config/default.yaml
+        env:
+          QC_USER_ID: dummy
+          QC_API_TOKEN: dummy
+
+  integration-full-nightly:
+    name: Integration Full Nightly
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run full slow integration suite
+        run: pytest tests/integration -q -m "integration and slow" --durations=10
+
+  lean-smoke-test:
+    name: Lean Backtest Smoke Test
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule' && contains(github.event.head_commit.message, '[lean-test]')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev,lean]"
+
+      - name: Install Lean CLI
+        run: pip install lean
+
+      - name: Run Lean smoke backtest
+        run: fxhe-backtest --project lean_project --start 2022-01-01 --end 2022-06-30
+        env:
+          QC_USER_ID: ${{ secrets.QC_USER_ID }}
+          QC_API_TOKEN: ${{ secrets.QC_API_TOKEN }}

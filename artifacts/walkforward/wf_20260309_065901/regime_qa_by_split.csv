@@ -1,0 +1,2 @@
+split_idx,n_bars,n_transitions,transitions_per_1000_bars,max_posterior_sum_error,occupancy_trend,occupancy_chop,occupancy_risk_off,posterior_sum_ok,churn_ok,occupancy_ok,regime_qa_pass
+0,64,25,390.625,1.3988810110276972e-14,0.359375,0.25,0.390625,True,False,True,False

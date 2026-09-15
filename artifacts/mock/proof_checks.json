@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "checks": {
+    "trend_pnl_in_trend": {"value":1.0,"threshold":0.6,"pass":true},
+    "pairs_pnl_in_chop": {"value":0.0,"threshold":0.6,"pass":false},
+    "risk_off_abs_pnl_share": {"value":0.0,"threshold":0.1,"pass":true},
+    "risk_off_entry_count": {"value":0,"threshold":0,"pass":true},
+    "pair_profit_concentration": {"value":0.0,"threshold":0.5,"pass":true}
+  },
+  "engine_abs_pnl": {"trend":0.122,"pairs":0.0}
+}

@@ -1,0 +1,352 @@
+[
+  {
+    "timestamp": "2019-01-02T00:00:00Z",
+    "equity": 1.000912,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-03T00:00:00Z",
+    "equity": 0.999715,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-04T00:00:00Z",
+    "equity": 0.998457,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-01-07T00:00:00Z",
+    "equity": 0.998788,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-01-08T00:00:00Z",
+    "equity": 0.997703,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-09T00:00:00Z",
+    "equity": 0.996995,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-10T00:00:00Z",
+    "equity": 0.998129,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-11T00:00:00Z",
+    "equity": 0.99842,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-01-14T00:00:00Z",
+    "equity": 0.997356,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-01-15T00:00:00Z",
+    "equity": 0.998638,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-16T00:00:00Z",
+    "equity": 0.997817,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-17T00:00:00Z",
+    "equity": 0.997088,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-18T00:00:00Z",
+    "equity": 0.99735,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-01-21T00:00:00Z",
+    "equity": 0.996872,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-01-22T00:00:00Z",
+    "equity": 0.996637,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-23T00:00:00Z",
+    "equity": 0.99592,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-24T00:00:00Z",
+    "equity": 0.996229,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-25T00:00:00Z",
+    "equity": 0.994616,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-01-28T00:00:00Z",
+    "equity": 0.996104,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-01-29T00:00:00Z",
+    "equity": 0.996651,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-30T00:00:00Z",
+    "equity": 0.996481,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-01-31T00:00:00Z",
+    "equity": 0.995334,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-01T00:00:00Z",
+    "equity": 0.993941,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-02-04T00:00:00Z",
+    "equity": 0.994995,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-02-05T00:00:00Z",
+    "equity": 0.996492,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-06T00:00:00Z",
+    "equity": 0.99689,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-07T00:00:00Z",
+    "equity": 0.995312,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-08T00:00:00Z",
+    "equity": 0.996392,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-02-11T00:00:00Z",
+    "equity": 0.995227,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-02-12T00:00:00Z",
+    "equity": 0.997083,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-13T00:00:00Z",
+    "equity": 0.99809,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-14T00:00:00Z",
+    "equity": 0.998395,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-15T00:00:00Z",
+    "equity": 0.997382,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-02-18T00:00:00Z",
+    "equity": 0.995792,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-02-19T00:00:00Z",
+    "equity": 0.995267,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-20T00:00:00Z",
+    "equity": 0.995837,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-21T00:00:00Z",
+    "equity": 0.997355,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-22T00:00:00Z",
+    "equity": 0.995615,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-02-25T00:00:00Z",
+    "equity": 0.995996,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-02-26T00:00:00Z",
+    "equity": 0.997451,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-27T00:00:00Z",
+    "equity": 0.998681,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-02-28T00:00:00Z",
+    "equity": 0.99846,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-01T00:00:00Z",
+    "equity": 0.997298,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-03-04T00:00:00Z",
+    "equity": 0.995648,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-03-05T00:00:00Z",
+    "equity": 0.994099,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-06T00:00:00Z",
+    "equity": 0.995458,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-07T00:00:00Z",
+    "equity": 0.9962,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-08T00:00:00Z",
+    "equity": 0.994906,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-03-11T00:00:00Z",
+    "equity": 0.99415,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-03-12T00:00:00Z",
+    "equity": 0.995472,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-13T00:00:00Z",
+    "equity": 0.994873,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-14T00:00:00Z",
+    "equity": 0.995701,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-15T00:00:00Z",
+    "equity": 0.994521,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-03-18T00:00:00Z",
+    "equity": 0.992948,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-03-19T00:00:00Z",
+    "equity": 0.993602,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-20T00:00:00Z",
+    "equity": 0.993904,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-21T00:00:00Z",
+    "equity": 0.992357,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-22T00:00:00Z",
+    "equity": 0.992279,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-03-25T00:00:00Z",
+    "equity": 0.993337,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-03-26T00:00:00Z",
+    "equity": 0.994086,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-27T00:00:00Z",
+    "equity": 0.993205,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-28T00:00:00Z",
+    "equity": 0.99151,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-03-29T00:00:00Z",
+    "equity": 0.991213,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-04-01T00:00:00Z",
+    "equity": 0.990529,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-04-02T00:00:00Z",
+    "equity": 0.989058,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-04-03T00:00:00Z",
+    "equity": 0.990159,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-04-04T00:00:00Z",
+    "equity": 0.988697,
+    "regime_label": "TREND"
+  },
+  {
+    "timestamp": "2019-04-05T00:00:00Z",
+    "equity": 0.988792,
+    "regime_label": "CHOP"
+  },
+  {
+    "timestamp": "2019-04-08T00:00:00Z",
+    "equity": 0.987099,
+    "regime_label": "RISK_OFF"
+  },
+  {
+    "timestamp": "2019-04-09T00:00:00Z",
+    "equity": 0.988512,
+    "regime_label": "TREND"
+  }
+]
