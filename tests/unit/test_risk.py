@@ -1,9 +1,10 @@
 """Unit tests for risk/controls.py and risk/position_sizing.py."""
 from __future__ import annotations
+
 import pytest
 
 from fx_hybrid_engine.risk.controls import RiskController
-from fx_hybrid_engine.risk.position_sizing import vol_target_scalar, size_pairs_legs
+from fx_hybrid_engine.risk.position_sizing import size_pairs_legs, vol_target_scalar
 from fx_hybrid_engine.utils.config import RiskConfig
 
 

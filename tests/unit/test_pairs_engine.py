@@ -1,10 +1,10 @@
 """Unit tests for engines/pairs.py."""
 from __future__ import annotations
+
 import pandas as pd
-import pytest
 
 from fx_hybrid_engine.engines.pairs import PairsEngine
-from fx_hybrid_engine.engines.types import Direction, EngineType
+from fx_hybrid_engine.engines.types import EngineType
 from fx_hybrid_engine.utils.config import PairsConfig
 
 
@@ -59,7 +59,7 @@ def test_pairs_engine_long_short_directions(synthetic_cointegrated_pair):
             dirs = {s.symbol: s.direction for s in active}
             # Verify opposite directions
             assert dirs.get("A") != dirs.get("B"), "Legs should have opposite directions"
-            active_pairs_found = True
+            active_pairs_found = True  # noqa: F841
             break
 
     # Note: if no trade triggered in the sample, the test is inconclusive but not a failure

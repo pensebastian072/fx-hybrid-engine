@@ -35,13 +35,13 @@ from fx_lean_engine.risk.caps import RiskCaps, RiskManager
 from fx_lean_engine.storage import LiveArtifactSink
 from fx_lean_engine.types import (
     Bar,
-    PairStatus,
     PairsEngineFactory,
+    PairStatus,
     PipelineArtifacts,
     PortfolioRiskState,
     RegimeEngineFactory,
-    TrendEngineFactory,
     TradeIntent,
+    TrendEngineFactory,
 )
 
 HEALTH_DATA_OK = "DATA_OK"

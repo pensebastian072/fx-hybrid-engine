@@ -1,8 +1,7 @@
 """Unit tests for features/spread.py."""
 from __future__ import annotations
-import numpy as np
+
 import pandas as pd
-import pytest
 
 from fx_hybrid_engine.features.spread import (
     compute_spread,

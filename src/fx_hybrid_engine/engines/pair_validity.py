@@ -135,7 +135,7 @@ class PairValidityManager:
                 prev_median = float(np.median(history)) if history else spread_std
                 if prev_median > 0 and spread_std > (self.spread_std_spike_k * prev_median):
                     breakdown_reason = "spread_std_spike"
-            if breakdown_reason is None and snap.last_beta is not None and not np.isnan(beta):
+            if breakdown_reason is None and snap.last_beta is not None and not np.isnan(beta):  # noqa: SIM102
                 if abs(beta - snap.last_beta) > self.beta_jump_abs:
                     breakdown_reason = "beta_jump"
 

@@ -10,7 +10,6 @@ import yaml
 
 from fx_lean_engine.backtest.validation import validate_backtest_artifacts
 
-
 REQUIRED_TABLES = ["signals.csv", "orders.csv", "equity_curve.csv", "regime.csv", "features.csv", "targets.csv"]
 PHASE2_TABLES = ["pairs_candidates.csv", "pairs_scan.csv", "pair_state_events.csv", "pnl_by_pair.csv"]
 

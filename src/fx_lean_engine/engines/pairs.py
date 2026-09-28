@@ -161,12 +161,7 @@ class PairsEngine:
                     reason = "PAIR_MAX_HOLD"
                     state.position = "FLAT"
                     state.holding_bars = 0
-                elif state.position == "LONG_SPREAD" and zscore >= -self.exit_z:
-                    direction = "EXIT"
-                    reason = "PAIR_EXIT_Z"
-                    state.position = "FLAT"
-                    state.holding_bars = 0
-                elif state.position == "SHORT_SPREAD" and zscore <= self.exit_z:
+                elif state.position == "LONG_SPREAD" and zscore >= -self.exit_z or state.position == "SHORT_SPREAD" and zscore <= self.exit_z:
                     direction = "EXIT"
                     reason = "PAIR_EXIT_Z"
                     state.position = "FLAT"

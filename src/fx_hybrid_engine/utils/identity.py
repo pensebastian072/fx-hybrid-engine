@@ -5,9 +5,10 @@ import hashlib
 import json
 import logging
 import subprocess
+from collections.abc import Mapping
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 logger = logging.getLogger("fxhe.utils.identity")
 

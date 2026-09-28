@@ -9,7 +9,14 @@ from fx_lean_engine.config.loader import (
     load_runtime_config,
     load_universe_config,
 )
-from fx_lean_engine.config.models import BacktestConfig, PairsConfig, PairsPolicyConfig, RegimeConfig, RuntimeConfig, UniverseConfig
+from fx_lean_engine.config.models import (
+    BacktestConfig,
+    PairsConfig,
+    PairsPolicyConfig,
+    RegimeConfig,
+    RuntimeConfig,
+    UniverseConfig,
+)
 
 __all__ = [
     "UniverseConfig",

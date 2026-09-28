@@ -698,7 +698,7 @@ def _state_for_timestamp(
     timeline = timeline_map.get(pair_id)
     if timeline is not None and len(timeline) > 0:
         ts = pd.Timestamp(timestamp)
-        if ts.tzinfo is None:
+        if ts.tzinfo is None:  # noqa: SIM108
             ts = ts.tz_localize("UTC")
         else:
             ts = ts.tz_convert("UTC")

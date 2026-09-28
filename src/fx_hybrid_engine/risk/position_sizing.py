@@ -1,7 +1,7 @@
 """Position sizing: vol-targeting and beta-neutral helpers."""
 from __future__ import annotations
+
 import numpy as np
-import pandas as pd
 
 from fx_hybrid_engine.utils.config import RiskConfig
 

@@ -44,7 +44,7 @@ def small_config():
 
 def test_engine_type():
     config = MLSignalConfig()
-    engine = MLSignalEngine(config)
+    engine = MLSignalEngine(config)  # noqa: F841
     # Engine generates ML_ENSEMBLE signals
     assert EngineType.ML_ENSEMBLE == EngineType.ML_ENSEMBLE
 

@@ -6,14 +6,14 @@ import pandas as pd
 import pytest
 
 from fx_hybrid_engine.features.spread import (
+    compute_spread,
     engle_granger_test,
     half_life,
+    hedge_ratio,
     is_cointegrated,
     johansen_test,
     kalman_spread,
     zscore,
-    compute_spread,
-    hedge_ratio,
 )
 
 

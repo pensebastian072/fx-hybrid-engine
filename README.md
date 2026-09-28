@@ -1,5 +1,13 @@
 # fx-hybrid-engine
 
+<!-- one-tap-install -->
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-2ea44f?style=for-the-badge&logo=github)](https://github.com/pensebastian072/fx-hybrid-engine/archive/refs/heads/main.zip)
+
+**Run it on your computer in 3 steps:** 1) [download the ZIP](https://github.com/pensebastian072/fx-hybrid-engine/archive/refs/heads/main.zip) · 2) unzip it · 3) double-click **`install.bat`** (Windows) or run **`./install.sh`** (macOS/Linux).
+The dashboard opens in your browser at `http://127.0.0.1:3055` - it runs only on your machine. Next time use `start.bat` / `./start.sh`.
+Needs [Node.js 20+](https://nodejs.org/). The first install builds the dashboard (a few minutes). Sign-in is off by default; add Clerk keys to `ui/.env.local` to turn it on. The Python research engine installs separately (`pip install -e ".[dev]"`).
+<!-- one-tap-install -->
+
 A hybrid quantitative FX trading system combining:
 
 - **Pairs (StatArb) Engine** — cointegration-based mean-reversion on currency pairs

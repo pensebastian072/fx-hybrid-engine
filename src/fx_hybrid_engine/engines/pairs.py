@@ -1,6 +1,8 @@
 """Pairs (statistical arbitrage) engine."""
 from __future__ import annotations
+
 import logging
+
 import pandas as pd
 
 from fx_hybrid_engine.engines.types import Direction, EngineOutput, EngineType, Signal
@@ -77,7 +79,7 @@ class PairsEngine:
         timeline = self._pair_state_timeline.get(pair_id)
         if timeline is not None and len(timeline) > 0:
             ts = pd.Timestamp(timestamp)
-            if ts.tzinfo is None:
+            if ts.tzinfo is None:  # noqa: SIM108
                 ts = ts.tz_localize("UTC")
             else:
                 ts = ts.tz_convert("UTC")

@@ -1,24 +1,24 @@
 """Integration test: mixed-regime simulation verifies engine gating."""
 from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 import pytest
 
 from fx_hybrid_engine.engines.pairs import PairsEngine
 from fx_hybrid_engine.engines.trend import TrendEngine
-from fx_hybrid_engine.engines.types import Direction, EngineType
-from fx_hybrid_engine.regime.hmm import RegimeHMM, TREND, CHOP, RISK_OFF
-from fx_hybrid_engine.regime.orchestrator import RegimeOrchestrator
+from fx_hybrid_engine.engines.types import EngineType
 from fx_hybrid_engine.portfolio.builder import PortfolioBuilder
+from fx_hybrid_engine.regime.hmm import CHOP, RISK_OFF, TREND
+from fx_hybrid_engine.regime.orchestrator import RegimeOrchestrator
 from fx_hybrid_engine.utils.config import (
+    DataConfig,
     EngineConfig,
     PairsConfig,
-    TrendConfig,
     RegimeConfig,
     RiskConfig,
-    DataConfig,
+    TrendConfig,
 )
-
 
 pytestmark = pytest.mark.integration
 

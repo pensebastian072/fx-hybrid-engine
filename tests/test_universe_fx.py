@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from fx_lean_engine.data.universe import SubscriptionRegistry, add_forex_for_alias, normalize_forex_pair
+from fx_lean_engine.data.universe import (
+    SubscriptionRegistry,
+    add_forex_for_alias,
+    normalize_forex_pair,
+)
 
 
 @dataclass
