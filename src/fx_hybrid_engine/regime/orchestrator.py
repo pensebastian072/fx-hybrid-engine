@@ -1,13 +1,15 @@
 """Regime orchestrator: gates engine signals based on current HMM state."""
 from __future__ import annotations
+
 import logging
-import numpy as np
-import pandas as pd
 from typing import Literal
 
-from fx_hybrid_engine.engines.types import Direction, EngineOutput, EngineType, Signal
-from fx_hybrid_engine.features.indicators import rolling_vol, momentum_slope
-from fx_hybrid_engine.regime.hmm import RegimeHMM, TREND, CHOP, RISK_OFF
+import numpy as np
+import pandas as pd
+
+from fx_hybrid_engine.engines.types import Direction, EngineOutput, Signal
+from fx_hybrid_engine.features.indicators import momentum_slope, rolling_vol
+from fx_hybrid_engine.regime.hmm import CHOP, RISK_OFF, TREND, RegimeHMM
 from fx_hybrid_engine.utils.config import RegimeConfig, RiskConfig
 
 logger = logging.getLogger("fxhe.regime.orchestrator")
@@ -126,10 +128,7 @@ class RegimeOrchestrator:
         elif mode == "pairs_only":
             allowed_pairs = list(pairs_output.signals)
             allowed_trend = []
-        elif mode == "trend_only":
-            allowed_pairs = []
-            allowed_trend = list(trend_output.signals)
-        elif state == TREND:
+        elif mode == "trend_only" or state == TREND:
             allowed_pairs = []
             allowed_trend = list(trend_output.signals)
         elif state == CHOP:

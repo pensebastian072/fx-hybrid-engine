@@ -1,7 +1,7 @@
 """Portfolio builder: aggregates gated signals → target weights."""
 from __future__ import annotations
+
 import logging
-import pandas as pd
 
 from fx_hybrid_engine.engines.types import Direction, Signal
 from fx_hybrid_engine.risk.position_sizing import apply_vol_sizing

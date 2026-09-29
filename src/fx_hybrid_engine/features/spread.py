@@ -10,7 +10,9 @@ Concepts adapted from stefan-jansen/machine-learning-for-trading ch9
  06_statistical_arbitrage_with_cointegrated_pairs.ipynb).
 """
 from __future__ import annotations
+
 import logging
+
 import numpy as np
 import pandas as pd
 from statsmodels.regression.linear_model import OLS

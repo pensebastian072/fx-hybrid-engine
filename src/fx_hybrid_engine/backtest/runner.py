@@ -1,13 +1,13 @@
 """Backtest runner: parameter sweep over config variants."""
 from __future__ import annotations
-import copy
+
 import logging
 from pathlib import Path
+
 import pandas as pd
 import yaml
 
-from fx_hybrid_engine.lean.lean_runner import BacktestResult, run_backtest
-from fx_hybrid_engine.utils.config import load_config
+from fx_hybrid_engine.lean.lean_runner import run_backtest
 
 logger = logging.getLogger("fxhe.backtest.runner")
 
@@ -43,7 +43,7 @@ def sweep(
     records = []
 
     for combo in itertools.product(*values):
-        params = dict(zip(keys, combo))
+        params = dict(zip(keys, combo))  # noqa: B905
         cfg_path = _write_temp_config(base_config_path, params)
         try:
             result = run_backtest(project_dir, config_path=cfg_path)

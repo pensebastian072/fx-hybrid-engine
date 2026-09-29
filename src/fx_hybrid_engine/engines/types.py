@@ -1,17 +1,19 @@
 """Shared dataclasses for engine signal outputs."""
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
+
 import pandas as pd
 
 
-class Direction(str, Enum):
+class Direction(str, Enum):  # noqa: UP042
     LONG = "long"
     SHORT = "short"
     FLAT = "flat"
 
 
-class EngineType(str, Enum):
+class EngineType(str, Enum):  # noqa: UP042
     PAIRS = "pairs"
     TREND = "trend"
     ML_ENSEMBLE = "ml_ensemble"

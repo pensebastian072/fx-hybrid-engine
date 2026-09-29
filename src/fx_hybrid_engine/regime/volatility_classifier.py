@@ -28,7 +28,7 @@ VOL_REGIME_MED = "MED_VOL"
 VOL_REGIME_HIGH = "HIGH_VOL"
 
 
-class VolRegime(str, Enum):
+class VolRegime(str, Enum):  # noqa: UP042
     LOW = VOL_REGIME_LOW
     MED = VOL_REGIME_MED
     HIGH = VOL_REGIME_HIGH

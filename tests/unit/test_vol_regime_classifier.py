@@ -6,11 +6,11 @@ import pandas as pd
 import pytest
 
 from fx_hybrid_engine.regime.volatility_classifier import (
-    VolRegime,
-    VolatilityRegimeClassifier,
     VOL_REGIME_HIGH,
     VOL_REGIME_LOW,
     VOL_REGIME_MED,
+    VolatilityRegimeClassifier,
+    VolRegime,
 )
 
 

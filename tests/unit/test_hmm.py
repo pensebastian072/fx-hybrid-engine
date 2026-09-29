@@ -1,10 +1,10 @@
 """Unit tests for regime/hmm.py and regime/orchestrator.py."""
 from __future__ import annotations
+
 import numpy as np
-import pandas as pd
 import pytest
 
-from fx_hybrid_engine.regime.hmm import RegimeHMM, TREND, CHOP, RISK_OFF
+from fx_hybrid_engine.regime.hmm import CHOP, RISK_OFF, TREND, RegimeHMM
 
 
 def _build_observations(n_bars: int = 200, high_vol: bool = False) -> np.ndarray:

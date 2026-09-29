@@ -8,7 +8,12 @@ from dataclasses import dataclass
 from typing import Any
 from urllib import error, request
 
-from fx_hybrid_engine.brokers.base import BrokerAccount, BrokerBalance, BrokerOrderRequest, BrokerPosition
+from fx_hybrid_engine.brokers.base import (
+    BrokerAccount,
+    BrokerBalance,
+    BrokerOrderRequest,
+    BrokerPosition,
+)
 
 JsonObject = dict[str, Any]
 HttpRequester = Callable[[str, str, dict[str, str], JsonObject | None], JsonObject]

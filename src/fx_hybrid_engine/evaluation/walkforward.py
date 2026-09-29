@@ -19,8 +19,8 @@ from fx_hybrid_engine.data.provider import fetch_multi_symbol
 from fx_hybrid_engine.engines.pair_validity import PairValidityManager
 from fx_hybrid_engine.engines.pairs import PairsEngine
 from fx_hybrid_engine.engines.pairs_scan import build_pairs_diagnostics, scan_candidate_pairs
-from fx_hybrid_engine.engines.trend_features import compute_trend_features, feature_columns
 from fx_hybrid_engine.engines.trend import TrendEngine
+from fx_hybrid_engine.engines.trend_features import compute_trend_features, feature_columns
 from fx_hybrid_engine.engines.types import Direction, EngineType, Signal
 from fx_hybrid_engine.evaluation.attribution import (
     evaluate_proof_checks,

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 from fx_lean_engine.backtest.synthetic import run_synthetic_backtest
 

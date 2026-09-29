@@ -48,7 +48,7 @@ config/_sweep_tmp.yaml
 
 # Local outputs and raw data dumps
 outputs/
-data/
+/data/
 artifacts/latest_run/
 artifacts/run_history/
 

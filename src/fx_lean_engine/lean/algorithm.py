@@ -12,7 +12,11 @@ from typing import Any
 
 from fx_lean_engine.config import load_backtest_config, load_universe_config
 from fx_lean_engine.data.consolidation import BarRouter
-from fx_lean_engine.data.universe import SubscriptionRegistry, add_forex_for_alias, normalize_forex_pair
+from fx_lean_engine.data.universe import (
+    SubscriptionRegistry,
+    add_forex_for_alias,
+    normalize_forex_pair,
+)
 from fx_lean_engine.lean.brokerage import apply_brokerage_model
 from fx_lean_engine.orchestration.pipeline import build_runtime_from_configs
 from fx_lean_engine.types import Bar

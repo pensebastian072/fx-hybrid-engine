@@ -12,7 +12,7 @@
     "prebuild": "node ./scripts/prepare-next-cache.mjs",
     "build": "next build",
     "prestart": "node ./scripts/prepare-next-cache.mjs",
-    "start": "next start",
+    "start": "next start -H 127.0.0.1",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && bun format",
     "lint:strict": "eslint --max-warnings=0 src",

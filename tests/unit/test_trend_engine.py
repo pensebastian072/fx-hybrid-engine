@@ -1,7 +1,5 @@
 """Unit tests for engines/trend.py."""
 from __future__ import annotations
-import pandas as pd
-import pytest
 
 from fx_hybrid_engine.engines.trend import TrendEngine
 from fx_hybrid_engine.engines.types import Direction, EngineType
