@@ -1,9 +1,29 @@
 """Shared pytest fixtures."""
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
+
+TRACKED_MODEL_REGISTRY = (
+    Path(__file__).resolve().parents[1] / "artifacts" / "model_registry" / "model_registry.jsonl"
+)
+
+
+@pytest.fixture(autouse=True, scope="session")
+def _restore_tracked_model_registry():
+    """The training tests use the default config, whose model registry is the
+    committed artifacts/model_registry/model_registry.jsonl. Put it back after
+    the run so a local test session never leaves machine-specific temp paths in
+    a tracked file."""
+    before = TRACKED_MODEL_REGISTRY.read_bytes() if TRACKED_MODEL_REGISTRY.exists() else None
+    yield
+    if before is None:
+        TRACKED_MODEL_REGISTRY.unlink(missing_ok=True)
+    else:
+        TRACKED_MODEL_REGISTRY.write_bytes(before)
 
 
 @pytest.fixture
