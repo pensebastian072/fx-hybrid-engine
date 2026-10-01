@@ -76,7 +76,7 @@ export function InfoSidebar({
                             <li key={linkIndex}>
                               <Link
                                 href={link.url}
-                                className='text-primary flex items-center gap-1.5 text-sm underline'
+                                className='text-foreground decoration-primary flex items-center gap-1.5 text-sm underline decoration-2 underline-offset-2'
                                 target='_blank'
                               >
                                 <span>{link.title}</span>

@@ -260,7 +260,12 @@ export default function AlgoDashboardPage() {
             {
               label: 'Max Drawdown',
               value: manifest.metrics ? `${(manifest.metrics.max_drawdown * 100).toFixed(2)}%` : '—',
-              subvalue: walkforward.proof_checks?.pass ? 'Proof checks passing' : 'Proof checks failing',
+              subvalue: !walkforward.proof_checks?.checks ||
+                Object.keys(walkforward.proof_checks.checks).length === 0
+                ? 'No proof checks yet'
+                : walkforward.proof_checks.pass
+                  ? 'Proof checks passing'
+                  : 'Proof checks failing',
               positive: false
             },
             {

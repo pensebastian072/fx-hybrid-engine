@@ -62,7 +62,11 @@ export default function RiskPage() {
     void load();
   }, [load]);
 
-  const proof = data?.proof_checks;
+  // A run with no proof checks writes {} - show "no data", never a "checks failed" banner.
+  const proof =
+    data?.proof_checks?.checks && Object.keys(data.proof_checks.checks).length > 0
+      ? data.proof_checks
+      : null;
   const promotion = data?.promotion_decision;
   const opsSummary = promotion?.ops_summary as Record<string, unknown> | undefined;
   const riskEvents = data?.risk_events ?? [];
