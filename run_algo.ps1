@@ -24,7 +24,16 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Resolve-PythonCommand {
-    $pythonCmd = Get-Command python -ErrorAction SilentlyContinue
+    # The project's own environment wins: it has the engine installed.
+    $venvPython = Join-Path $repoRoot ".venv\Scripts\python.exe"
+    if (Test-Path $venvPython) {
+        return $venvPython
+    }
+
+    # Skip the Microsoft Store placeholder (...\WindowsApps\python.exe). It is on PATH by
+    # default on Windows 10/11 and only prints "Python was not found" (exit 9009).
+    $pythonCmd = Get-Command python -All -ErrorAction SilentlyContinue |
+        Where-Object { $_.Source -notmatch '\\WindowsApps\\' } | Select-Object -First 1
     if ($null -ne $pythonCmd) {
         return $pythonCmd.Source
     }
@@ -35,7 +44,6 @@ function Resolve-PythonCommand {
     }
 
     $candidates = @(
-        (Join-Path $repoRoot ".venv\Scripts\python.exe"),
         "$env:LocalAppData\Programs\Python\Python312\python.exe",
         "$env:LocalAppData\Programs\Python\Python311\python.exe",
         "$env:ProgramFiles\Python312\python.exe",
@@ -144,7 +152,9 @@ function Invoke-Fxhe {
     }
     $entry = $FxheEntrypoints[$FxheCommand]
     $pyCode = "import sys; from fx_hybrid_engine.cli import $entry as f; sys.argv=['$FxheCommand'] + sys.argv[1:]; f()"
-    Invoke-Step -Title "$Title (python fallback)" -Command $script:PythonCommand -Arguments @("-c", $pyCode) + $Arguments
+    # Parentheses matter: in command mode "@(...) + $Arguments" binds only @(...) to -Arguments
+    # and silently drops the rest, so every fallback step used to run with no arguments.
+    Invoke-Step -Title "$Title (python fallback)" -Command $script:PythonCommand -Arguments (@("-c", $pyCode) + $Arguments)
 }
 
 $repoRoot = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }

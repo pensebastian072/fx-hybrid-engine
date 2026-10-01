@@ -407,7 +407,9 @@ function WalkforwardPageContent() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {walkforward?.proof_checks ? (
+                {/* a run with no proof checks writes {} - treat it as "none", not as data */}
+                {walkforward?.proof_checks?.checks &&
+                Object.keys(walkforward.proof_checks.checks).length > 0 ? (
                   <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3'>
                     {Object.entries(walkforward.proof_checks.checks).map(([name, check]) => (
                       <div
